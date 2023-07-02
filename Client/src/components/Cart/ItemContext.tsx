@@ -5,21 +5,21 @@ const item1: Item = {
   name: "Cotton T-Shirt 1",
   type: "Shirt",
   img: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img5.webp",
-  price: 44,
+  price: 20,
 };
 
 const item2: Item = {
   name: "Cotton T-Shirt 2",
   type: "Shirt",
   img: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img6.webp",
-  price: 44,
+  price: 10,
 };
 
 const item3: Item = {
   name: "Cotton T-Shirt 3",
   type: "Shirt",
   img: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img7.webp",
-  price: 44,
+  price: 5,
 };
 
 function reducer(items: Array<Item>, action: any): Array<Item> {
@@ -45,15 +45,12 @@ export const ItemContext = createContext<ItemContextObject>({
   dispatchCart: () => {},
 });
 
-function tempContextProvider(children: React.ReactNode) {
+export const ItemContextProvider = ({ children }: ItemContextProviderProps) => {
   const [items, dispatchCart] = useReducer(reducer, [item1, item2, item3]);
+
   return (
     <ItemContext.Provider value={{ items: items, dispatchCart: dispatchCart }}>
       {children}
     </ItemContext.Provider>
   );
-}
-
-export const ItemContextProvider = ({ children }: ItemContextProviderProps) => {
-  return tempContextProvider(children);
 };

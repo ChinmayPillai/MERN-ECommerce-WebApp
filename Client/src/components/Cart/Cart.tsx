@@ -2,7 +2,6 @@ import {
   MDBBtn,
   MDBCard,
   MDBCardBody,
-  MDBCardImage,
   MDBCardText,
   MDBCol,
   MDBContainer,
@@ -11,14 +10,26 @@ import {
   MDBRow,
   MDBTypography,
 } from "mdb-react-ui-kit";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import CartItem from "./CartItem";
-import { Item } from "./CartItem";
 import { ItemContext } from "./ItemContext";
 
-const products = useContext(ItemContext);
-
 export default function Cart() {
+  const products = useContext(ItemContext);
+  let tempCost = 0;
+  products.items.map((item) => {
+    tempCost += item.price;
+  });
+
+  const [cost, setCost] = useState(tempCost);
+  const [delivery, setDelivery] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(cost);
+
+  function handleDelivery(e: React.ChangeEvent<HTMLSelectElement>) {
+    setDelivery(Number(e.target.value));
+    setTotalPrice(cost + Number(e.target.value));
+  }
+
   return (
     <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
       <MDBContainer className="py-5 h-100">
@@ -75,10 +86,10 @@ export default function Cart() {
                         <MDBTypography tag="h5" className="text-uppercase">
                           {products.items.length} items
                         </MDBTypography>
-                        <MDBTypography tag="h5">€ 132.00</MDBTypography>
+                        <MDBTypography tag="h5">$ {cost}</MDBTypography>
                       </div>
 
-                      <MDBTypography tag="h5" className="text-uppercase mb-3">
+                      <MDBTypography tag="h5" className="mb-3">
                         Shipping
                       </MDBTypography>
 
@@ -86,16 +97,18 @@ export default function Cart() {
                         <select
                           className="select p-2 rounded bg-grey"
                           style={{ width: "100%" }}
+                          value={delivery}
+                          onChange={handleDelivery}
                         >
-                          <option value="1">Standard-Delivery- €5.00</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
-                          <option value="4">Four</option>
+                          <option value="0">Standard Delivery - Free</option>
+                          <option value="5">One-Day Delivery - $5</option>
+                          <option value="10">Delivery Today - $10</option>
+                          <option value="20">Deliven in 1hr - $20</option>
                         </select>
                       </div>
 
-                      <MDBTypography tag="h5" className="text-uppercase mb-3">
-                        Give code
+                      <MDBTypography tag="h5" className="mb-3">
+                        Referal Code
                       </MDBTypography>
 
                       <div className="mb-5">
@@ -108,7 +121,7 @@ export default function Cart() {
                         <MDBTypography tag="h5" className="text-uppercase">
                           Total price
                         </MDBTypography>
-                        <MDBTypography tag="h5">€ 137.00</MDBTypography>
+                        <MDBTypography tag="h5">$ {totalPrice}</MDBTypography>
                       </div>
 
                       <MDBBtn color="dark" block size="lg">

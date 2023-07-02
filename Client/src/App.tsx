@@ -1,10 +1,8 @@
 import { Routes, Route } from "react-router-dom";
-import { createContext, useReducer } from "react";
 import NavBar from "./components/NavBar/NavBar";
 import Login from "./components/Login/Login";
 import Terms from "./components/Login/Terms";
 import Cart from "./components/Cart/Cart";
-import { Item } from "./components/Cart/CartItem";
 import { ItemContextProvider } from "./components/Cart/ItemContext";
 
 function App() {
