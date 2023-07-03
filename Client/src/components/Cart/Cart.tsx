@@ -10,24 +10,34 @@ import {
   MDBRow,
   MDBTypography,
 } from "mdb-react-ui-kit";
-import { useState, useContext } from "react";
+import { useState, useContext, useReducer, createContext } from "react";
 import CartItem from "./CartItem";
-import { ItemContext } from "./ItemContext";
+import { ItemContext } from "../../App";
+
+export const ForceUpdateContext = createContext<React.DispatchWithoutAction>(
+  () => {}
+);
 
 export default function Cart() {
+  console.log("render Cart");
+
+  const [x, forceUpdate] = useReducer((x) => x + 1, 0);
+
   const products = useContext(ItemContext);
-  let tempCost = 0;
+  let cost = 0;
   products.items.map((item) => {
-    tempCost += item.price;
+    cost += item.price * item.quantity;
   });
 
-  const [cost, setCost] = useState(tempCost);
+  {
+    /*const [cost, setCost] = useState(tempCost);*/
+  }
   const [delivery, setDelivery] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(cost);
+  //const [totalPrice, setTotalPrice] = useState(cost);
 
   function handleDelivery(e: React.ChangeEvent<HTMLSelectElement>) {
     setDelivery(Number(e.target.value));
-    setTotalPrice(cost + Number(e.target.value));
+    //setTotalPrice(cost + Number(e.target.value));
   }
 
   return (
@@ -57,9 +67,11 @@ export default function Cart() {
 
                       <hr className="my-4" />
 
-                      {products.items.map((item) => (
-                        <CartItem item={item} />
-                      ))}
+                      <ForceUpdateContext.Provider value={forceUpdate}>
+                        {products.items.map((item, index) => (
+                          <CartItem key={index} item={item} />
+                        ))}
+                      </ForceUpdateContext.Provider>
 
                       <div className="pt-5">
                         <MDBTypography tag="h6" className="mb-0">
@@ -121,7 +133,9 @@ export default function Cart() {
                         <MDBTypography tag="h5" className="text-uppercase">
                           Total price
                         </MDBTypography>
-                        <MDBTypography tag="h5">$ {totalPrice}</MDBTypography>
+                        <MDBTypography tag="h5">
+                          $ {cost + delivery}
+                        </MDBTypography>
                       </div>
 
                       <MDBBtn color="dark" block size="lg">

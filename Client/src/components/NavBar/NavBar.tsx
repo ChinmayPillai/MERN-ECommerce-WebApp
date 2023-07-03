@@ -11,7 +11,7 @@ const Cart: Item = {
   name: "Cart",
   link: "/cart",
   internal: true,
-  img: "/Cart.png",
+  img: "Cart.png",
   margin: "me-2",
 };
 
@@ -19,7 +19,7 @@ const Login: Item = {
   name: "Login / SignUp",
   link: "/login",
   internal: true,
-  img: "/Login.png",
+  img: "Login.png",
   margin: "me-2",
 };
 

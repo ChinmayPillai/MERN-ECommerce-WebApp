@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { ItemContext } from "../../App";
+import { ForceUpdateContext } from "./Cart";
 import {
   MDBBtn,
   MDBCardImage,
@@ -10,10 +12,12 @@ import {
 } from "mdb-react-ui-kit";
 
 export type Item = {
+  id: number;
   name: string;
   type: string;
   img?: string;
   price: number;
+  quantity: number;
 };
 
 interface Props {
@@ -21,14 +25,28 @@ interface Props {
 }
 
 function CartItem({ item }: Props) {
-  const [quantity, setQuantity] = useState(1);
+  console.log("render CartItem");
+  const products = useContext(ItemContext);
+  const forceUpdate = useContext(ForceUpdateContext);
 
   function incrementQuantity() {
-    setQuantity((c) => c + 1);
+    products.dispatch({ type: "increment", item: item });
+    console.log("Increment");
+    forceUpdate();
+    //setQuantity((c) => c + 1);
   }
 
   function decrementQuantity() {
-    setQuantity((c) => c - 1);
+    products.dispatch({ type: "decrement", item: item });
+    console.log("Decrement");
+    forceUpdate();
+    //setQuantity((c) => c - 1);
+  }
+
+  function removeItem() {
+    console.log(`Remove ${item.id}`);
+    products.dispatch({ type: "removeItem", item: item });
+    forceUpdate();
   }
 
   return (
@@ -55,7 +73,7 @@ function CartItem({ item }: Props) {
             <MDBIcon fas icon="minus" />
           </MDBBtn>
 
-          <MDBInput type="number" min="0" value={quantity} size="sm" />
+          <MDBInput type="number" min="0" value={item.quantity} size="sm" />
 
           <MDBBtn color="link" className="px-2" onClick={incrementQuantity}>
             <MDBIcon fas icon="plus" />
@@ -67,7 +85,7 @@ function CartItem({ item }: Props) {
           </MDBTypography>
         </MDBCol>
         <MDBCol md="1" lg="1" xl="1" className="text-end">
-          <a href="#!" className="text-muted">
+          <a href="#!" className="text-muted" onClick={removeItem}>
             <MDBIcon fas icon="times" />
           </a>
         </MDBCol>
