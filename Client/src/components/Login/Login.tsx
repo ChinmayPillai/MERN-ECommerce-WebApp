@@ -13,6 +13,10 @@ import {
   MDBInput,
   MDBCheckbox,
 } from "mdb-react-ui-kit";
+import axios from "axios";
+
+const loginUrl = "http://localhost:3000/login";
+const registerUrl = "http://localhost:3000/register";
 
 function Login() {
   const [justifyActive, setJustifyActive] = useState("tab1");
@@ -30,11 +34,21 @@ function Login() {
   function loginUser(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     console.log("Login\n");
+    axios
+      .post(loginUrl, { email: email, password: password })
+      .then((response) => {
+        console.log(response.data);
+      });
   }
 
   function registerUser(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     console.log("Register\n");
+    axios
+      .post(registerUrl, { name: name, email: email, password: password })
+      .then((response) => {
+        console.log(response.data);
+      });
   }
 
   return (

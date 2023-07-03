@@ -3,8 +3,6 @@ import NavBar from "./components/NavBar/NavBar";
 import Login from "./components/Login/Login";
 import Terms from "./components/Login/Terms";
 import Cart from "./components/Cart/Cart";
-//import { ItemContextProvider } from "./components/Cart/ItemContext";
-
 import { Item } from "./components/Cart/CartItem";
 import { createContext, useReducer } from "react";
 
