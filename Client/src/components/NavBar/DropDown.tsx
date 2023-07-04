@@ -1,4 +1,4 @@
-import { Item } from "./Item";
+import { Item } from "./NavItem";
 
 interface Props {
   title: string;

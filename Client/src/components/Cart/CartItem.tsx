@@ -18,6 +18,7 @@ export type Item = {
   img?: string;
   price: number;
   quantity: number;
+  rating?: number;
 };
 
 interface Props {

@@ -5,11 +5,21 @@ import Terms from "./components/Login/Terms";
 import Cart from "./components/Cart/Cart";
 import { Item } from "./components/Cart/CartItem";
 import { createContext, useReducer } from "react";
+import Home from "./components/Home/Home";
 
 function reducer(items: Array<Item>, action: any): Array<Item> {
   console.log("Reducer");
   switch (action.type) {
     case "addItem":
+      {
+        /*let increment = false;
+      items.map((item) => {
+        if (item === action.item) {
+          increment = true;
+        }
+      });
+      if (!increment) return [...items, action.item]; */
+      }
       return [...items, action.item];
     case "removeItem":
       items.map((item, index) => {
@@ -62,6 +72,7 @@ function App() {
       img: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img5.webp",
       price: 20,
       quantity: 1,
+      rating: 4,
     },
     {
       id: 2,
@@ -70,6 +81,7 @@ function App() {
       img: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img6.webp",
       price: 10,
       quantity: 1,
+      rating: 3,
     },
     {
       id: 3,
@@ -78,6 +90,7 @@ function App() {
       img: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img7.webp",
       price: 5,
       quantity: 1,
+      rating: 2,
     },
   ]);
 
@@ -85,7 +98,7 @@ function App() {
     <ItemContext.Provider value={{ items: items, dispatch: dispatch }}>
       <Routes>
         <Route path="/" element={<NavBar />}>
-          <Route index />
+          <Route index element={<Home />} />
           <Route path="cart" element={<Cart />} />
           <Route path="login" element={<Login />} />
           <Route path="terms" element={<Terms />} />

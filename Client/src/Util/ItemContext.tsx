@@ -1,4 +1,4 @@
-import { Item } from "./CartItem";
+import { Item } from "../components/Cart/CartItem";
 import { createContext, useReducer } from "react";
 
 const item1: Item = {

@@ -13,6 +13,7 @@ import {
 import { useState, useContext, useReducer, createContext } from "react";
 import CartItem from "./CartItem";
 import { ItemContext } from "../../App";
+import { Link } from "react-router-dom";
 
 export const ForceUpdateContext = createContext<React.DispatchWithoutAction>(
   () => {}
@@ -76,8 +77,8 @@ export default function Cart() {
                       <div className="pt-5">
                         <MDBTypography tag="h6" className="mb-0">
                           <MDBCardText tag="a" href="#!" className="text-body">
-                            <MDBIcon fas icon="long-arrow-alt-left me-2" /> Back
-                            to shop
+                            <MDBIcon fas icon="long-arrow-alt-left me-2" />
+                            <Link to="/">Back to shop</Link>
                           </MDBCardText>
                         </MDBTypography>
                       </div>
@@ -139,7 +140,7 @@ export default function Cart() {
                       </div>
 
                       <MDBBtn color="dark" block size="lg">
-                        Register
+                        Checkout
                       </MDBBtn>
                     </div>
                   </MDBCol>

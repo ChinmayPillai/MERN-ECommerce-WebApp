@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { Item, NavItem } from "./Item";
+import { Item, NavItem } from "./NavItem";
 
 const Home: Item = {
   name: "Home",
