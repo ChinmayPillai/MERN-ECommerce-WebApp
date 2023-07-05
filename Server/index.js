@@ -22,7 +22,7 @@ app.post('/login', async (req, res) => {
             name: user.name,
             email: user.email
         }, privateKey);
-        res.send({ status: "OK", user: token});
+        res.send({ status: "OK", user: token, name: user.name});
     }else
         res.send({ status: "Error", message: "Can't Find User, Please check input or Register" });
 })

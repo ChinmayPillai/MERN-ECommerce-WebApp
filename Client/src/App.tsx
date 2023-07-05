@@ -4,35 +4,29 @@ import Login from "./components/Login/Login";
 import Terms from "./components/Login/Terms";
 import Cart from "./components/Cart/Cart";
 import { Item } from "./components/Cart/CartItem";
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useState } from "react";
 import Home from "./components/Home/Home";
 
 function reducer(items: Array<Item>, action: any): Array<Item> {
   console.log("Reducer");
   switch (action.type) {
     case "addItem":
-      {
-        /*let increment = false;
-      items.map((item) => {
-        if (item === action.item) {
-          increment = true;
-        }
-      });
-      if (!increment) return [...items, action.item]; */
-      }
-      return [...items, action.item];
+      items.push(action.item);
+      console.log(`Added Item, \nId: ${action.item.id}`);
+      return items;
     case "removeItem":
       items.map((item, index) => {
-        if (item === action.item) {
+        if (item.id === action.item.id) {
           items.splice(index, 1);
+          console.log(`Removed Item, \nId: ${action.item.id}`);
           return items;
         }
       });
       return items;
     case "increment":
       items.map((item) => {
-        if (item === action.item) {
-          item.quantity += 0.5;
+        if (item.id === action.item.id) {
+          item.quantity += 1;
           console.log("Increased by 1");
           return items;
         }
@@ -40,8 +34,8 @@ function reducer(items: Array<Item>, action: any): Array<Item> {
       return items;
     case "decrement":
       items.map((item) => {
-        if (item === action.item && item.quantity >= 0.5) {
-          item.quantity -= 0.5;
+        if (item.id === action.item.id && item.quantity >= 1) {
+          item.quantity -= 1;
           console.log("Reduced by 1");
           return items;
         }
@@ -56,14 +50,20 @@ function reducer(items: Array<Item>, action: any): Array<Item> {
 type ItemContextObject = {
   items: Item[];
   dispatch: React.Dispatch<{ type: string; item: Item }>;
+  login: string | null;
+  setLogin: React.Dispatch<React.SetStateAction<string | null>>;
 };
 
 export const ItemContext = createContext<ItemContextObject>({
   items: [],
   dispatch: () => {},
+  login: null,
+  setLogin: () => {},
 });
 
 function App() {
+  const [login, setLogin] = useState<string | null>(null);
+
   const [items, dispatch] = useReducer(reducer, [
     {
       id: 1,
@@ -95,7 +95,14 @@ function App() {
   ]);
 
   return (
-    <ItemContext.Provider value={{ items: items, dispatch: dispatch }}>
+    <ItemContext.Provider
+      value={{
+        items: items,
+        dispatch: dispatch,
+        login: login,
+        setLogin: setLogin,
+      }}
+    >
       <Routes>
         <Route path="/" element={<NavBar />}>
           <Route index element={<Home />} />

@@ -7,13 +7,16 @@ import {
   MDBBtn,
 } from "mdb-react-ui-kit";
 import { Item } from "../Cart/CartItem";
+import { ItemContext } from "../../App";
+import { useContext } from "react";
 
 interface Props {
   item: Item;
-  dispatch: React.Dispatch<{ type: string; item: Item }>;
 }
 
-export default function ProductCard({ item, dispatch }: Props) {
+export default function ProductCard({ item }: Props) {
+  const cart = useContext(ItemContext);
+
   const stars = [];
   if (item.rating) {
     for (let i = 0; i < item.rating; i++) {
@@ -25,7 +28,13 @@ export default function ProductCard({ item, dispatch }: Props) {
   }
 
   function addToCart() {
-    dispatch({ type: "addItem", item: item });
+    cart.items.map((cartItem) => {
+      if (cartItem === item) {
+        cart.dispatch({ type: "increment", item: item });
+        return;
+      }
+    });
+    cart.dispatch({ type: "addItem", item: item });
   }
 
   return (
@@ -36,7 +45,7 @@ export default function ProductCard({ item, dispatch }: Props) {
           position="top"
           alt={item.name}
           width="30%"
-          height="30%"
+          height="auto"
         />
         <MDBCardBody>
           <div className="d-flex justify-content-between">

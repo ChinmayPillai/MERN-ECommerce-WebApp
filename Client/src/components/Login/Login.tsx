@@ -1,7 +1,9 @@
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { ItemContext } from "../../App";
+import { useNavigate } from "react-router-dom";
 import {
   MDBContainer,
   MDBTabs,
@@ -23,6 +25,7 @@ function Login() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const cart = useContext(ItemContext);
 
   const handleJustifyClick = (value: string) => {
     if (value === justifyActive) {
@@ -38,6 +41,13 @@ function Login() {
       .post(loginUrl, { email: email, password: password })
       .then((response) => {
         console.log(response.data);
+        if (response.data.name) {
+          cart.setLogin(response.data.name);
+          //const navigate = useNavigate();
+          //navigate("/");
+        } else {
+          alert("Invalid username or password");
+        }
       });
   }
 

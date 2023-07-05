@@ -24,9 +24,9 @@ export default function Cart() {
 
   const [x, forceUpdate] = useReducer((x) => x + 1, 0);
 
-  const products = useContext(ItemContext);
+  const cart = useContext(ItemContext);
   let cost = 0;
-  products.items.map((item) => {
+  cart.items.map((item) => {
     cost += item.price * item.quantity;
   });
 
@@ -62,14 +62,14 @@ export default function Cart() {
                           Shopping Cart
                         </MDBTypography>
                         <MDBTypography className="mb-0 text-muted">
-                          {products.items.length} items
+                          {cart.items.length} items
                         </MDBTypography>
                       </div>
 
                       <hr className="my-4" />
 
                       <ForceUpdateContext.Provider value={forceUpdate}>
-                        {products.items.map((item, index) => (
+                        {cart.items.map((item, index) => (
                           <CartItem key={index} item={item} />
                         ))}
                       </ForceUpdateContext.Provider>
@@ -97,7 +97,7 @@ export default function Cart() {
 
                       <div className="d-flex justify-content-between mb-4">
                         <MDBTypography tag="h5" className="text-uppercase">
-                          {products.items.length} items
+                          {cart.items.length} items
                         </MDBTypography>
                         <MDBTypography tag="h5">$ {cost}</MDBTypography>
                       </div>

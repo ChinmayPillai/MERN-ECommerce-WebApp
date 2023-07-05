@@ -1,5 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { Item, NavItem } from "./NavItem";
+import { useContext } from "react";
+import { ItemContext } from "../../App";
 
 const Home: Item = {
   name: "Home",
@@ -15,7 +17,7 @@ const Cart: Item = {
   margin: "me-2",
 };
 
-const Login: Item = {
+let Login: Item = {
   name: "Login / SignUp",
   link: "/login",
   internal: true,
@@ -24,6 +26,10 @@ const Login: Item = {
 };
 
 function NavBar() {
+  const cart = useContext(ItemContext);
+
+  if (cart.login) Login.name = cart.login;
+
   return (
     <>
       <nav
