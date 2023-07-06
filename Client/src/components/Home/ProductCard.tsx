@@ -9,13 +9,38 @@ import {
 import { Item } from "../Cart/CartItem";
 import { ItemContext } from "../../App";
 import { useContext } from "react";
+import axios from "axios";
 
 interface Props {
   item: Item;
 }
 
+const addToCartUrlBase = "http://localhost:3000/cart/";
+let addToCartUrl = addToCartUrlBase;
+
 export default function ProductCard({ item }: Props) {
   const cart = useContext(ItemContext);
+  if (cart.user) {
+    addToCartUrl = addToCartUrlBase + cart.user._id;
+  }
+
+  function addToCart() {
+    console.log("Adding to Cart");
+    if (!cart.user) {
+      alert("Please login");
+      return;
+    }
+
+    cart.items.map((cartItem) => {
+      if (cartItem.id === item.id) {
+        axios.post(addToCartUrl, { type: "increment", item: item });
+        return;
+      }
+    });
+
+    axios.post(addToCartUrl, { type: "addItem", item: item });
+    return;
+  }
 
   const stars = [];
   if (item.rating) {
@@ -25,16 +50,6 @@ export default function ProductCard({ item }: Props) {
     for (let i = item.rating; i < 5; i++) {
       stars.push(<MDBIcon far icon="star" />);
     }
-  }
-
-  function addToCart() {
-    cart.items.map((cartItem) => {
-      if (cartItem === item) {
-        cart.dispatch({ type: "increment", item: item });
-        return;
-      }
-    });
-    cart.dispatch({ type: "addItem", item: item });
   }
 
   return (

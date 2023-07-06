@@ -10,21 +10,38 @@ import {
   MDBRow,
   MDBTypography,
 } from "mdb-react-ui-kit";
-import { useState, useContext, useReducer, createContext } from "react";
+import {
+  useState,
+  useContext,
+  useReducer,
+  createContext,
+  useEffect,
+} from "react";
 import CartItem from "./CartItem";
 import { ItemContext } from "../../App";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export const ForceUpdateContext = createContext<React.DispatchWithoutAction>(
   () => {}
 );
 
+const cartUrlBase = "http://localhost:3000/cart/";
+
 export default function Cart() {
   console.log("render Cart");
+  const cart = useContext(ItemContext);
+  if (cart.user) {
+    let cartUrl = cartUrlBase + cart.user._id;
+    useEffect(() => {
+      axios.get(cartUrl).then((res) => {
+        cart.dispatch({ type: "setItems", items: res.data });
+      });
+    }, []);
+  }
 
   const [x, forceUpdate] = useReducer((x) => x + 1, 0);
 
-  const cart = useContext(ItemContext);
   let cost = 0;
   cart.items.map((item) => {
     cost += item.price * item.quantity;

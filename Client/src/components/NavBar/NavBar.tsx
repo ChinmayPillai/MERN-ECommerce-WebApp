@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { Item, NavItem } from "./NavItem";
-import { useContext } from "react";
+import { useContext, useReducer } from "react";
 import { ItemContext } from "../../App";
 
 const Home: Item = {
@@ -27,8 +27,11 @@ let Login: Item = {
 
 function NavBar() {
   const cart = useContext(ItemContext);
-
-  if (cart.login) Login.name = cart.login;
+  const [x, forceUpdate] = useReducer((x) => x + 1, 0);
+  if (cart.user) {
+    Login.name = cart.user.name;
+    //forceUpdate();
+  }
 
   return (
     <>

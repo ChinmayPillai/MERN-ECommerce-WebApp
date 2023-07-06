@@ -41,6 +41,9 @@ function reducer(items: Array<Item>, action: any): Array<Item> {
         }
       });
       return items;
+    case "setItems":
+      items = action.items;
+      return items;
     default:
       console.log("Unknown action");
       return items;
@@ -49,22 +52,23 @@ function reducer(items: Array<Item>, action: any): Array<Item> {
 
 type ItemContextObject = {
   items: Item[];
-  dispatch: React.Dispatch<{ type: string; item: Item }>;
-  login: string | null;
-  setLogin: React.Dispatch<React.SetStateAction<string | null>>;
+  dispatch: React.Dispatch<{ type: string; item?: Item; items?: Item[] }>;
+  user: any;
+  setUser: React.Dispatch<React.SetStateAction<string | null>>;
 };
 
 export const ItemContext = createContext<ItemContextObject>({
   items: [],
   dispatch: () => {},
-  login: null,
-  setLogin: () => {},
+  user: null,
+  setUser: () => {},
 });
 
 function App() {
-  const [login, setLogin] = useState<string | null>(null);
+  const [user, setUser] = useState<any | null>(null);
 
-  const [items, dispatch] = useReducer(reducer, [
+  const [items, dispatch] = useReducer(reducer, []);
+  /*
     {
       id: 1,
       name: "Cotton T-Shirt 1",
@@ -92,15 +96,15 @@ function App() {
       quantity: 1,
       rating: 2,
     },
-  ]);
+  ]);*/
 
   return (
     <ItemContext.Provider
       value={{
         items: items,
         dispatch: dispatch,
-        login: login,
-        setLogin: setLogin,
+        user: user,
+        setUser: setUser,
       }}
     >
       <Routes>

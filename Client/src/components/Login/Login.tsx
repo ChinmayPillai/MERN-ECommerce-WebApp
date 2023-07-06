@@ -41,8 +41,8 @@ function Login() {
       .post(loginUrl, { email: email, password: password })
       .then((response) => {
         console.log(response.data);
-        if (response.data.name) {
-          cart.setLogin(response.data.name);
+        if (response.data.user) {
+          cart.setUser(response.data.user);
           //const navigate = useNavigate();
           //navigate("/");
         } else {
