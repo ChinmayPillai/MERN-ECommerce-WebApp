@@ -31,6 +31,7 @@ export default function ProductCard({ item }: Props) {
     }
 
     const inc = new Promise<string>((resolve, reject) => {
+      if (cart.items.length == 0) reject();
       cart.items.map((cartItem, index, arr) => {
         if (cartItem.id === item.id) {
           console.log("Calling Dispatch increment");

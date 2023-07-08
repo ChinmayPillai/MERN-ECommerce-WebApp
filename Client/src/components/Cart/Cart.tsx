@@ -43,9 +43,11 @@ export default function Cart() {
   const [x, forceUpdate] = useReducer((x) => x + 1, 0);
 
   let cost = 0;
-  cart.items.map((item) => {
-    cost += item.price * item.quantity;
-  });
+  if (cart.items.length != 0) {
+    cart.items.map((item) => {
+      cost += item.price * item.quantity;
+    });
+  }
 
   {
     /*const [cost, setCost] = useState(tempCost);*/
@@ -85,11 +87,13 @@ export default function Cart() {
 
                       <hr className="my-4" />
 
-                      <ForceUpdateContext.Provider value={forceUpdate}>
-                        {cart.items.map((item, index) => (
-                          <CartItem key={index} item={item} />
-                        ))}
-                      </ForceUpdateContext.Provider>
+                      {cart.items.length != 0 && (
+                        <ForceUpdateContext.Provider value={forceUpdate}>
+                          {cart.items.map((item, index) => (
+                            <CartItem key={index} item={item} />
+                          ))}
+                        </ForceUpdateContext.Provider>
+                      )}
 
                       <div className="pt-5">
                         <MDBTypography tag="h6" className="mb-0">

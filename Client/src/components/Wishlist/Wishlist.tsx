@@ -17,7 +17,7 @@ import {
   createContext,
   useEffect,
 } from "react";
-import WishlistItem from "./WishListItem";
+import WishlistItem from "./WishlistItem";
 import { ItemContext } from "../../App";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -41,22 +41,6 @@ export default function Wishlist() {
   }
 
   const [x, forceUpdate] = useReducer((x) => x + 1, 0);
-
-  let cost = 0;
-  cart.items.map((item) => {
-    cost += item.price * item.quantity;
-  });
-
-  {
-    /*const [cost, setCost] = useState(tempCost);*/
-  }
-  const [delivery, setDelivery] = useState(0);
-  //const [totalPrice, setTotalPrice] = useState(cost);
-
-  function handleDelivery(e: React.ChangeEvent<HTMLSelectElement>) {
-    setDelivery(Number(e.target.value));
-    //setTotalPrice(cost + Number(e.target.value));
-  }
 
   return (
     <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
@@ -85,11 +69,13 @@ export default function Wishlist() {
 
                     <hr className="my-8" />
 
-                    <ForceUpdateContext.Provider value={forceUpdate}>
-                      {cart.items.map((item, index) => (
-                        <WishlistItem key={index} item={item} />
-                      ))}
-                    </ForceUpdateContext.Provider>
+                    {cart.items.length != 0 && (
+                      <ForceUpdateContext.Provider value={forceUpdate}>
+                        {cart.items.map((item, index) => (
+                          <WishlistItem key={index} item={item} />
+                        ))}
+                      </ForceUpdateContext.Provider>
+                    )}
 
                     <div className="pt-5">
                       <MDBTypography tag="h6" className="mb-0">

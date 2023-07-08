@@ -24,21 +24,25 @@ export type Item = {
 interface Props {
   item: Item;
 }
+const cartUrlBase = "http://localhost:3000/cart/";
+let cartUrl = cartUrlBase;
 
 function CartItem({ item }: Props) {
   console.log("render CartItem");
   const products = useContext(ItemContext);
   const forceUpdate = useContext(ForceUpdateContext);
 
+  if (products.user) cartUrl = cartUrlBase + products.user._id;
+
   function incrementQuantity() {
-    products.dispatch({ type: "increment", item: item });
+    products.dispatch({ type: "increment", item: item, url: cartUrl });
     console.log("Increment");
     forceUpdate();
     //setQuantity((c) => c + 1);
   }
 
   function decrementQuantity() {
-    products.dispatch({ type: "decrement", item: item });
+    products.dispatch({ type: "decrement", item: item, url: cartUrl });
     console.log("Decrement");
     forceUpdate();
     //setQuantity((c) => c - 1);
