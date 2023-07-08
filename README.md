@@ -11,6 +11,7 @@ An E-Commerce Full Stack Website made on the MERN tech stack using TypeScript.
 5. Node
 6. jasonwebtoken
 7. axios
+8. nodemon
 
 ## Building
 
