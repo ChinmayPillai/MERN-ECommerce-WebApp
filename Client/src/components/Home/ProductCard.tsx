@@ -9,7 +9,6 @@ import {
 import { Item } from "../Cart/CartItem";
 import { ItemContext } from "../../App";
 import { useContext } from "react";
-import axios from "axios";
 
 interface Props {
   item: Item;
@@ -27,19 +26,26 @@ export default function ProductCard({ item }: Props) {
   function addToCart() {
     console.log("Adding to Cart");
     if (!cart.user) {
-      alert("Please login");
+      location.href = "/login";
       return;
     }
 
-    cart.items.map((cartItem) => {
-      if (cartItem.id === item.id) {
-        axios.post(addToCartUrl, { type: "increment", item: item });
-        return;
-      }
+    const inc = new Promise<string>((resolve, reject) => {
+      cart.items.map((cartItem, index, arr) => {
+        if (cartItem.id === item.id) {
+          console.log("Calling Dispatch increment");
+          cart.dispatch({ type: "increment", item: item, url: addToCartUrl });
+          resolve("Increment");
+        }
+        if (index + 1 === arr.length) reject();
+      });
     });
 
-    axios.post(addToCartUrl, { type: "addItem", item: item });
-    return;
+    inc.catch(() => {
+      console.log("Calling Dispatch addItem");
+      cart.dispatch({ type: "addItem", item: item, url: addToCartUrl });
+      return;
+    });
   }
 
   const stars = [];

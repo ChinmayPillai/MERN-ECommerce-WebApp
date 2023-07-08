@@ -17,6 +17,14 @@ const Cart: Item = {
   margin: "me-2",
 };
 
+const Wishlist: Item = {
+  name: "Wishlist",
+  link: "/wishlist",
+  internal: true,
+  img: "Wishlist.png",
+  margin: "me-2",
+};
+
 let Login: Item = {
   name: "Login / SignUp",
   link: "/login",
@@ -65,8 +73,9 @@ function NavBar() {
               <NavItem item={Home} />
             </ul>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-flex">
-              <NavItem item={Cart} />
-              <NavItem item={Login} />
+              <NavItem key={1} item={Wishlist} />
+              <NavItem key={2} item={Cart} />
+              <NavItem key={3} item={Login} />
             </ul>
             {/*<form className="d-flex" role="search">
                 <input
