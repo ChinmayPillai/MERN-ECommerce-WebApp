@@ -50,7 +50,7 @@ function CartItem({ item }: Props) {
 
   function removeItem() {
     console.log(`Remove ${item.id}`);
-    products.dispatch({ type: "removeItem", item: item });
+    products.dispatch({ type: "removeItem", item: item, url: cartUrl });
     forceUpdate();
   }
 

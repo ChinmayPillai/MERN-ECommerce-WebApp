@@ -43,6 +43,8 @@ function Login() {
         console.log(response.data);
         if (response.data.user) {
           cart.setUser(response.data.user);
+          if (response.data.user.name)
+            alert(`Logged in as ${response.data.user.name}`);
           //const navigate = useNavigate();
           //navigate("/");
         } else {
@@ -58,6 +60,8 @@ function Login() {
       .post(registerUrl, { name: name, email: email, password: password })
       .then((response) => {
         console.log(response.data);
+        if (response.data.name)
+          alert(`Registration Successful ${response.data.name}`);
       });
   }
 

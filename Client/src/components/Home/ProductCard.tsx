@@ -42,9 +42,12 @@ export default function ProductCard({ item }: Props) {
       });
     });
 
+    inc.then(() => alert("Incresed Quantity in Cart"));
+
     inc.catch(() => {
       console.log("Calling Dispatch addItem");
       cart.dispatch({ type: "addItem", item: item, url: addToCartUrl });
+      alert("Added to Cart");
       return;
     });
   }

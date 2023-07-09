@@ -32,21 +32,21 @@ cartRouter.post('/:id', async (req, res) => {
 
 cartRouter.put('/:id', async (req, res) => {
     try{
-        debugger
-        console.log(`Incrementing Quantity of ${req.params.id}\n`);
         console.log(req.params.id + '\n' + req.body.item.id + '\n')
-        const user = await User.findOneAndUpdate({'_id': req.params.id, 'cart.id': req.body.item.id}, {'$inc': {'cart.$.quantity': 1}})
-        console.log('Done');
-        res.send(user);
-        /*const user = await User.findById(req.params.id);
-        user.cart.map( async item => {
-        if(item.id === req.body.item.id)
-            item.quantity = item.quantity + 1;
-            setTimeout(async () => await user.save(), 1000);
-            return;
-        })
-        res.send('Operation Failed');
-        return;*/
+        if(req.body.action === 'increment'){
+            console.log(`Incrementing Quantity of ${req.params.id}\n`);
+            const user = await User.findOneAndUpdate({'_id': req.params.id, 'cart.id': req.body.item.id}, {'$inc': {'cart.$.quantity': 1}})
+            res.send(user);
+        }
+        else if(req.body.action === 'decrement'){
+            console.log(`Decrementing Quantity of ${req.params.id}\n`);
+            const user = await User.findOneAndUpdate({'_id': req.params.id, 'cart.id': req.body.item.id}, {'$inc': {'cart.$.quantity': -1}})
+            res.send(user);
+        }
+        else if(req.body.action === 'delete'){
+            const user = await User.findOneAndUpdate({'_id': req.params.id}, {'$pull': {'cart': {id: req.body.item.id}}})
+            res.send(result);
+        }
     }
     catch(err){
         console.log(err.message + '\n');
@@ -54,5 +54,6 @@ cartRouter.put('/:id', async (req, res) => {
     }
     
 })
+
 
 module.exports = cartRouter;

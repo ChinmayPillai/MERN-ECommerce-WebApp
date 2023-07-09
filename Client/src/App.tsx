@@ -18,6 +18,7 @@ function reducer(items: Array<Item>, action: any): Array<Item> {
       console.log(`Added Item, \nId: ${action.item.id}`);
       return items;
     case "removeItem":
+      axios.put(action.url, { item: action.item, action: "delete" });
       items.map((item, index) => {
         if (item.id === action.item.id) {
           items.splice(index, 1);
@@ -28,7 +29,7 @@ function reducer(items: Array<Item>, action: any): Array<Item> {
       return items;
     case "increment":
       console.log("Increment");
-      axios.put(action.url, { item: action.item });
+      axios.put(action.url, { item: action.item, action: "increment" });
       items.map((item) => {
         if (item.id === action.item.id) {
           item.quantity += 1;
@@ -40,6 +41,7 @@ function reducer(items: Array<Item>, action: any): Array<Item> {
     case "decrement":
       items.map((item) => {
         if (item.id === action.item.id && item.quantity >= 1) {
+          axios.put(action.url, { item: action.item, action: "decrement" });
           item.quantity -= 1;
           console.log("Reduced by 1");
           return items;
