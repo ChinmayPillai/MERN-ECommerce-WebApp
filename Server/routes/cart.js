@@ -14,14 +14,14 @@ cartRouter.get('/:id', async (req, res) => {
 })
 
 cartRouter.post('/:id', async (req, res) => {
-    console.log('Post')
+    console.log('Cart Post')
     try{
         const user = await User.findById(req.params.id);
         console.log(req.body.item);
         //console.log(user);
         await user.cart.push(req.body.item);
         await user.save();
-        res.send('Success');
+        res.send('Added to Cart');
         return;
         }
         catch(err){
@@ -45,7 +45,7 @@ cartRouter.put('/:id', async (req, res) => {
         }
         else if(req.body.action === 'delete'){
             const user = await User.findOneAndUpdate({'_id': req.params.id}, {'$pull': {'cart': {id: req.body.item.id}}})
-            res.send(result);
+            res.send(user);
         }
     }
     catch(err){

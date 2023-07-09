@@ -16,11 +16,14 @@ interface Props {
 
 const addToCartUrlBase = "http://localhost:3000/cart/";
 let addToCartUrl = addToCartUrlBase;
+const addToWishlistUrlBase = "http://localhost:3000/wishlist/";
+let addToWishlistUrl = addToWishlistUrlBase;
 
 export default function ProductCard({ item }: Props) {
   const cart = useContext(ItemContext);
   if (cart.user) {
     addToCartUrl = addToCartUrlBase + cart.user._id;
+    addToWishlistUrl = addToWishlistUrlBase + cart.user._id;
   }
 
   function addToCart() {
@@ -48,6 +51,37 @@ export default function ProductCard({ item }: Props) {
       console.log("Calling Dispatch addItem");
       cart.dispatch({ type: "addItem", item: item, url: addToCartUrl });
       alert("Added to Cart");
+      return;
+    });
+  }
+
+  function addToWishlist() {
+    console.log("Adding to Wishlist");
+    if (!cart.user) {
+      location.href = "/login";
+      return;
+    }
+
+    const inc = new Promise<string>((resolve, reject) => {
+      if (cart.wishlist.length == 0) reject();
+      cart.wishlist.map((cartItem, index, arr) => {
+        if (cartItem.id === item.id) {
+          resolve("Increment");
+        }
+        if (index + 1 === arr.length) reject();
+      });
+    });
+
+    inc.then(() => alert("Already in Wishlist"));
+
+    inc.catch(() => {
+      console.log("Calling Wishlist Dispatch addItem");
+      cart.wishlistDispatch({
+        type: "addItem",
+        item: item,
+        url: addToWishlistUrl,
+      });
+      alert("Added to Wishlist");
       return;
     });
   }
@@ -91,13 +125,14 @@ export default function ProductCard({ item }: Props) {
             <h5 className="text-dark mb-0">$ {item.price}</h5>
           </div>
           <div className="d-flex flex-row">
-            {/*<MDBBtn
+            <MDBBtn
               color="primary"
               rippleColor="dark"
               className="flex-fill ms-1"
+              onClick={addToWishlist}
             >
-              Learn more
-            </MDBBtn>*/}
+              Wishlist
+            </MDBBtn>
             <MDBBtn
               color="danger"
               className="flex-fill ms-2"
@@ -107,11 +142,11 @@ export default function ProductCard({ item }: Props) {
             </MDBBtn>
           </div>
 
-          {/*<div className="d-flex justify-content-between mb-2">
-            <p className="text-muted mb-0">
+          <div className="d-flex justify-content-between mb-2">
+            {/* <p className="text-muted mb-0">
               Available: <span className="fw-bold">6</span>
-        </p>
-          </div>*/}
+        </p> */}
+          </div>
         </MDBCardBody>
       </MDBCard>
     </MDBCol>

@@ -15,14 +15,14 @@ function reducer(items: Array<Item>, action: any): Array<Item> {
     case "addItem":
       items.push(action.item);
       axios.post(action.url, { item: action.item });
-      console.log(`Added Item, \nId: ${action.item.id}`);
+      console.log(`Added Item, Id: ${action.item.id}`);
       return items;
     case "removeItem":
       axios.put(action.url, { item: action.item, action: "delete" });
       items.map((item, index) => {
         if (item.id === action.item.id) {
           items.splice(index, 1);
-          console.log(`Removed Item, \nId: ${action.item.id}`);
+          console.log(`Removed Item, Id: ${action.item.id}`);
           return items;
         }
       });
@@ -58,18 +58,19 @@ function reducer(items: Array<Item>, action: any): Array<Item> {
 }
 
 function Wishlistreducer(items: Array<Item>, action: any): Array<Item> {
-  console.log("Reducer");
+  console.log("Wishlist Reducer");
   switch (action.type) {
     case "addItem":
       items.push(action.item);
       axios.post(action.url, { item: action.item });
-      console.log(`Added Item, \nId: ${action.item.id}`);
+      console.log(`Added Wishlist Item, Id: ${action.item.id}`);
       return items;
     case "removeItem":
+      axios.put(action.url, { item: action.item, action: "delete" });
       items.map((item, index) => {
         if (item.id === action.item.id) {
           items.splice(index, 1);
-          console.log(`Removed Item, \nId: ${action.item.id}`);
+          console.log(`Removed Wishlist Item, Id: ${action.item.id}`);
           return items;
         }
       });

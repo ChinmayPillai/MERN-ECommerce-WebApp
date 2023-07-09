@@ -24,29 +24,37 @@ export type Item = {
 interface Props {
   item: Item;
 }
+const wishlisttUrlBase = "http://localhost:3000/wishlist/";
+let wishlistUrl = wishlisttUrlBase;
 
 function WishlistItem({ item }: Props) {
-  console.log("render CartItem");
+  console.log("render WishlistItem");
   const products = useContext(ItemContext);
   const forceUpdate = useContext(ForceUpdateContext);
 
-  function incrementQuantity() {
-    products.dispatch({ type: "increment", item: item });
-    console.log("Increment");
-    forceUpdate();
-    //setQuantity((c) => c + 1);
-  }
+  if (products.user) wishlistUrl = wishlisttUrlBase + products.user._id;
 
-  function decrementQuantity() {
-    products.dispatch({ type: "decrement", item: item });
-    console.log("Decrement");
-    forceUpdate();
-    //setQuantity((c) => c - 1);
-  }
+  // function incrementQuantity() {
+  //   products.dispatch({ type: "increment", item: item });
+  //   console.log("Increment");
+  //   forceUpdate();
+  //   //setQuantity((c) => c + 1);
+  // }
+
+  // function decrementQuantity() {
+  //   products.dispatch({ type: "decrement", item: item });
+  //   console.log("Decrement");
+  //   forceUpdate();
+  //   //setQuantity((c) => c - 1);
+  // }
 
   function removeItem() {
     console.log(`Remove ${item.id}`);
-    products.dispatch({ type: "removeItem", item: item });
+    products.wishlistDispatch({
+      type: "removeItem",
+      item: item,
+      url: wishlistUrl,
+    });
     forceUpdate();
   }
 

@@ -60,6 +60,10 @@ export default function Cart() {
     //setTotalPrice(cost + Number(e.target.value));
   }
 
+  function Checkout() {
+    alert("Order Placed");
+  }
+
   return (
     <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
       <MDBContainer className="py-5 h-100">
@@ -160,7 +164,7 @@ export default function Cart() {
                         </MDBTypography>
                       </div>
 
-                      <MDBBtn color="dark" block size="lg">
+                      <MDBBtn color="dark" block size="lg" onClick={Checkout}>
                         Checkout
                       </MDBBtn>
                     </div>

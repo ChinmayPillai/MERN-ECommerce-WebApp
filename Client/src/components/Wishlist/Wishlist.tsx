@@ -26,16 +26,16 @@ export const ForceUpdateContext = createContext<React.DispatchWithoutAction>(
   () => {}
 );
 
-const cartUrlBase = "http://localhost:3000/cart/";
+const wishlistUrlBase = "http://localhost:3000/wishlist/";
 
 export default function Wishlist() {
-  console.log("render Cart");
-  const cart = useContext(ItemContext);
-  if (cart.user) {
-    let cartUrl = cartUrlBase + cart.user._id;
+  console.log("render Wishlist");
+  const products = useContext(ItemContext);
+  if (products.user) {
+    let wishlistUrl = wishlistUrlBase + products.user._id;
     useEffect(() => {
-      axios.get(cartUrl).then((res) => {
-        cart.dispatch({ type: "setItems", items: res.data });
+      axios.get(wishlistUrl).then((res) => {
+        products.wishlistDispatch({ type: "setItems", items: res.data });
       });
     }, []);
   }
@@ -63,15 +63,15 @@ export default function Wishlist() {
                         Wishlist
                       </MDBTypography>
                       <MDBTypography className="mb-0 text-muted">
-                        {cart.items.length} items
+                        {products.wishlist.length} items
                       </MDBTypography>
                     </div>
 
                     <hr className="my-8" />
 
-                    {cart.items.length != 0 && (
+                    {products.wishlist.length != 0 && (
                       <ForceUpdateContext.Provider value={forceUpdate}>
-                        {cart.items.map((item, index) => (
+                        {products.wishlist.map((item, index) => (
                           <WishlistItem key={index} item={item} />
                         ))}
                       </ForceUpdateContext.Provider>
