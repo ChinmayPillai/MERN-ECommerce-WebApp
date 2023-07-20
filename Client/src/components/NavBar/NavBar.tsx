@@ -41,6 +41,11 @@ function NavBar() {
     //forceUpdate();
   }
 
+  function Logout() {
+    localStorage.removeItem("token");
+    location.href = "/";
+  }
+
   return (
     <>
       <nav
@@ -76,6 +81,16 @@ function NavBar() {
               <NavItem key={1} item={Wishlist} />
               <NavItem key={2} item={Cart} />
               <NavItem key={3} item={Login} />
+              <li className="nav-item my-2">
+                <img
+                  // className="me-2"
+                  src="Logout.png"
+                  alt="Logout"
+                  width="30"
+                  height="24"
+                  onClick={Logout}
+                ></img>
+              </li>
             </ul>
             {/*<form className="d-flex" role="search">
                 <input
