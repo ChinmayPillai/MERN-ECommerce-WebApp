@@ -62,8 +62,10 @@ function Login() {
       .post(registerUrl, { name: name, email: email, password: password })
       .then((response) => {
         console.log(response.data);
-        if (response.data.name)
+        if (response.data.name) {
           alert(`Registration Successful ${response.data.name}`);
+          location.href = "/login";
+        }
       });
   }
 
