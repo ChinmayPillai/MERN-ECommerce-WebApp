@@ -42,9 +42,11 @@ function Login() {
       .then((response) => {
         console.log(response.data);
         if (response.data.user) {
-          cart.setUser(response.data.user);
+          //cart.setUser(response.data.user);
+          localStorage.setItem("token", response.data.token);
           if (response.data.user.name)
             alert(`Logged in as ${response.data.user.name}`);
+          location.href = "/";
           //const navigate = useNavigate();
           //navigate("/");
         } else {
