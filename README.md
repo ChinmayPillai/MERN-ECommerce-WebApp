@@ -2,6 +2,9 @@
 
 An E-Commerce Full Stack Website made on the MERN tech stack using TypeScript.
 
+![Homepage.jpg](./Images/Homepage.png)
+![Cart.jpg](./Images/Cart.png)
+
 ## Technologies Used:
 
 1. React
