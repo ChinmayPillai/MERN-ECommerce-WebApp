@@ -35,8 +35,10 @@ app.post('/login', async (req, res) => {
         email: req.body.email,
     })
 
-    if(!user)
+    if(!user){
         res.send({status: "Error", message: "Can't Find User, Please check input or Register"});
+        return;
+    }
     
     const validPass = await bcrypt.compare(req.body.password, user.password);
 
