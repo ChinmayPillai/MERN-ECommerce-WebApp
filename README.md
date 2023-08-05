@@ -1,6 +1,8 @@
 # Full-Stack Web Aplication - ECom by Chinmay
 
 An E-Commerce Full Stack Website made on the MERN tech stack using TypeScript.
+</br>
+User specific data of every user is stored as an encrypted document on a MongoDB(NoSQL) database and is update on every interaction with the application.
 
 ![Homepage.jpg](./Images/Homepage.png)
 </br></br></br>
