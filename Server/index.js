@@ -10,7 +10,7 @@ const bcrypt = require('bcryptjs');
 
 app.use(cors());
 app.use(express.json());
-mongoose.connect('mongodb://127.0.0.1:27017/mern-ecommerse-website').then(() => console.log('Connected to Mongoose'));
+mongoose.connect('mongodb://db:27017/mern-ecommerse-website').then(() => console.log('Connected to Mongoose'));
 
 const privateKey = '123';
 

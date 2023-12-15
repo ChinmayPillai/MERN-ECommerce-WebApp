@@ -5,4 +5,13 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   //base: '/MERN-ECommerce-Website/',
   plugins: [react()],
+  server: {
+    host: true,
+    port: 5173, // This is the port which we will use in docker
+    // Thanks @sergiomoura for the window fix
+    // add the next lines if you're using windows and hot reload doesn't work
+     watch: {
+       usePolling: true
+     }
+  }
 })
