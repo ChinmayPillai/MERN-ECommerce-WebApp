@@ -24,6 +24,14 @@ services:
       - mern-ecommerse-website
     volumes:
       - mern-ecommerse-website:/data/db
+  nginx:
+    build: ./NginX
+    ports:
+      - 8080:80
+    depends_on:
+      - web
+    networks:
+      - mern-ecommerse-website
 
 networks:
   mern-ecommerse-website:
