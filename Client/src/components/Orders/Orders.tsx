@@ -1,17 +1,14 @@
 import {
-  MDBBtn,
   MDBCard,
   MDBCardBody,
   MDBCardText,
   MDBCol,
   MDBContainer,
   MDBIcon,
-  MDBInput,
   MDBRow,
   MDBTypography,
 } from "mdb-react-ui-kit";
 import {
-  useState,
   useContext,
   useReducer,
   createContext,
@@ -31,12 +28,14 @@ const orderUrlBase = "http://localhost:3000/orders/";
 export default function Orders() {
   console.log("render Orders");
   const products = useContext(ItemContext);
+
   if (products.user) {
     let orderUrl = orderUrlBase + products.user._id;
     useEffect(() => {
       axios.get(orderUrl).then((res) => {
         products.ordersDispatch({ type: "setItems", items: res.data });
       });
+      console.log("Setting Items");
     }, []);
   }
 
@@ -52,7 +51,6 @@ export default function Orders() {
               style={{ borderRadius: "15px" }}
             >
               <MDBCardBody className="p-0">
-                {/* <MDBRow className="g-0"> */}
                 <MDBCol lg="12">
                   <div className="p-5">
                     <div className="d-flex justify-content-between align-items-center mb-5">
@@ -69,7 +67,7 @@ export default function Orders() {
 
                     <hr className="my-8" />
 
-                    {products.wishlist.length != 0 && (
+                    {products.orders.length != 0 && (
                       <ForceUpdateContext.Provider value={forceUpdate}>
                         {products.orders.map((item, index) => (
                           <OrderItem key={index} item={item} />
@@ -87,68 +85,7 @@ export default function Orders() {
                     </div>
                   </div>
                 </MDBCol>
-                {/*
-                  <MDBCol lg="4" className="bg-grey">
-                    <div className="p-5">
-                      <MDBTypography
-                        tag="h3"
-                        className="fw-bold mb-5 mt-2 pt-1"
-                      >
-                        Summary
-                      </MDBTypography>
-
-                      <hr className="my-4" />
-
-                      <div className="d-flex justify-content-between mb-4">
-                        <MDBTypography tag="h5" className="text-uppercase">
-                          {cart.items.length} items
-                        </MDBTypography>
-                        <MDBTypography tag="h5">$ {cost}</MDBTypography>
-                      </div>
-
-                      <MDBTypography tag="h5" className="mb-3">
-                        Shipping
-                      </MDBTypography>
-
-                      <div className="mb-4 pb-2">
-                        <select
-                          className="select p-2 rounded bg-grey"
-                          style={{ width: "100%" }}
-                          value={delivery}
-                          onChange={handleDelivery}
-                        >
-                          <option value="0">Standard Delivery - Free</option>
-                          <option value="5">One-Day Delivery - $5</option>
-                          <option value="10">Delivery Today - $10</option>
-                          <option value="20">Deliven in 1hr - $20</option>
-                        </select>
-                      </div>
-
-                      <MDBTypography tag="h5" className="mb-3">
-                        Referal Code
-                      </MDBTypography>
-
-                      <div className="mb-5">
-                        <MDBInput size="lg" label="Enter your code" />
-                      </div>
-
-                      <hr className="my-4" />
-
-                      <div className="d-flex justify-content-between mb-5">
-                        <MDBTypography tag="h5" className="text-uppercase">
-                          Total price
-                        </MDBTypography>
-                        <MDBTypography tag="h5">
-                          $ {cost + delivery}
-                        </MDBTypography>
-                      </div>
-
-                      <MDBBtn color="dark" block size="lg">
-                        Checkout
-                      </MDBBtn>
-                    </div>
-                        </MDBCol>*/}
-                {/* </MDBRow> */}
+                
               </MDBCardBody>
             </MDBCard>
           </MDBCol>

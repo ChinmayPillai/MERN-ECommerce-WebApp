@@ -2,11 +2,8 @@ import { useContext } from "react";
 import { ItemContext } from "../../App";
 import { ForceUpdateContext } from "./Orders";
 import {
-  MDBBtn,
   MDBCardImage,
   MDBCol,
-  MDBIcon,
-  MDBInput,
   MDBRow,
   MDBTypography,
 } from "mdb-react-ui-kit";
@@ -34,30 +31,6 @@ function OrderItem({ item }: Props) {
 
   if (products.user) orderUrl = orderUrlBase + products.user._id;
 
-  // function incrementQuantity() {
-  //   products.dispatch({ type: "increment", item: item });
-  //   console.log("Increment");
-  //   forceUpdate();
-  //   //setQuantity((c) => c + 1);
-  // }
-
-  // function decrementQuantity() {
-  //   products.dispatch({ type: "decrement", item: item });
-  //   console.log("Decrement");
-  //   forceUpdate();
-  //   //setQuantity((c) => c - 1);
-  // }
-
-  // function removeItem() {
-  //   console.log(`Remove ${item.id}`);
-  //   products.ordersDispatch({
-  //     type: "removeItem",
-  //     item: item,
-  //     url: orderUrl,
-  //   });
-  //   forceUpdate();
-  // }
-
   return (
     <>
       <MDBRow className="mb-4 d-flex justify-content-between align-items-center">
@@ -77,17 +50,6 @@ function OrderItem({ item }: Props) {
             {item.name}
           </MDBTypography>
         </MDBCol>
-        {/* <MDBCol md="3" lg="3" xl="3" className="d-flex align-items-center">
-          <MDBBtn color="link" className="px-2" onClick={decrementQuantity}>
-            <MDBIcon fas icon="minus" />
-          </MDBBtn>
-
-          <MDBInput type="number" min="0" value={item.quantity} size="sm" />
-
-          <MDBBtn color="link" className="px-2" onClick={incrementQuantity}>
-            <MDBIcon fas icon="plus" />
-          </MDBBtn>
-        </MDBCol> */}
         <MDBCol md="3" lg="2" xl="2" className="text-end">
           <MDBTypography tag="h6" className="mb-0">
             $ {item.price}
