@@ -53,15 +53,10 @@ export default function Cart() {
     });
   }
 
-  {
-    /*const [cost, setCost] = useState(tempCost);*/
-  }
   const [delivery, setDelivery] = useState(0);
-  //const [totalPrice, setTotalPrice] = useState(cost);
 
   function handleDelivery(e: React.ChangeEvent<HTMLSelectElement>) {
     setDelivery(Number(e.target.value));
-    //setTotalPrice(cost + Number(e.target.value));
   }
 
   function Checkout() {
@@ -82,8 +77,8 @@ export default function Cart() {
         });
         cart.dispatch({ type: "removeItem", item: item, url: cartUrl });
       });
-      forceUpdate();
     }
+    forceUpdate();
   }
 
   return (
