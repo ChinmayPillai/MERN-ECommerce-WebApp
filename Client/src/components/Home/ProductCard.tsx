@@ -110,14 +110,6 @@ export default function ProductCard({ item }: Props) {
           <div className="d-flex justify-content-between">
             <p className="small">{item.type}</p>
             <div className="ms-auto text-warning">{item.rating && stars}</div>
-            {/*<p className="small">
-              <a href="#!" className="text-muted">
-                Laptops
-              </a>
-            </p>
-            <p className="small text-danger">
-              <s>$1099</s>
-            </p>*/}
           </div>
 
           <div className="d-flex justify-content-between mb-3">

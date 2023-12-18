@@ -3,7 +3,6 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { ItemContext } from "../../App";
-import { useNavigate } from "react-router-dom";
 import {
   MDBContainer,
   MDBTabs,
@@ -25,7 +24,6 @@ function Login() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const cart = useContext(ItemContext);
 
   const handleJustifyClick = (value: string) => {
     if (value === justifyActive) {
@@ -96,54 +94,6 @@ function Login() {
 
       <MDBTabsContent>
         <MDBTabsPane show={justifyActive === "tab1"}>
-          {/*
-          <div className="text-center mb-3">
-            <p>Sign in with:</p>
-
-            <div
-              className="d-flex justify-content-between mx-auto"
-              style={{ width: "40%" }}
-            >
-              <MDBBtn
-                tag="a"
-                color="none"
-                className="m-1"
-                style={{ color: "#1266f1" }}
-              >
-                <MDBIcon fab icon="facebook-f" size="sm" />
-              </MDBBtn>
-
-              <MDBBtn
-                tag="a"
-                color="none"
-                className="m-1"
-                style={{ color: "#1266f1" }}
-              >
-                <MDBIcon fab icon="twitter" size="sm" />
-              </MDBBtn>
-
-              <MDBBtn
-                tag="a"
-                color="none"
-                className="m-1"
-                style={{ color: "#1266f1" }}
-              >
-                <MDBIcon fab icon="google" size="sm" />
-              </MDBBtn>
-
-              <MDBBtn
-                tag="a"
-                color="none"
-                className="m-1"
-                style={{ color: "#1266f1" }}
-              >
-                <MDBIcon fab icon="github" size="sm" />
-              </MDBBtn>
-            </div>
-
-            <p className="text-center mt-3">or:</p>
-          </div>
-  */}
           <form onSubmit={loginUser}>
             <MDBInput
               wrapperClass="mb-4"
@@ -162,16 +112,6 @@ function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-
-            {/*<div className="d-flex justify-content-between mx-4 mb-4">
-            <MDBCheckbox
-              name="flexCheck"
-              value=""
-              id="flexCheckDefault"
-              label="Remember me"
-            />
-            <a href="!#">Forgot password?</a>
-          </div>*/}
 
             <MDBBtn className="mb-4 w-100">Sign in</MDBBtn>
           </form>
@@ -194,12 +134,6 @@ function Login() {
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-            {/*<MDBInput
-            wrapperClass="mb-4"
-            label="Username"
-            id="form1"
-            type="text"
-        />*/}
             <MDBInput
               wrapperClass="mb-4"
               label="Email"

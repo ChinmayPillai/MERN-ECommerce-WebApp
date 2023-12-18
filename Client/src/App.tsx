@@ -93,16 +93,6 @@ function Ordersreducer(items: Array<Item>, action: any): Array<Item> {
       axios.post(action.url, { item: action.item });
       console.log(`Added Order Item, Id: ${action.item.id}`);
       return items;
-    // case "removeItem":
-    //   axios.put(action.url, { item: action.item, action: "delete" });
-    //   items.map((item, index) => {
-    //     if (item.id === action.item.id) {
-    //       items.splice(index, 1);
-    //       console.log(`Removed Order Item, Id: ${action.item.id}`);
-    //       return items;
-    //     }
-    //   });
-    //   return items;
     case "setItems":
       items = action.items;
       return items;
@@ -157,35 +147,6 @@ function App() {
   const [wishlist, wishlistDispatch] = useReducer(Wishlistreducer, []);
   
   const [orders, ordersDispatch] = useReducer(Ordersreducer, []);
-  /*
-    {
-      id: 1,
-      name: "Cotton T-Shirt 1",
-      type: "Shirt",
-      img: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img5.webp",
-      price: 20,
-      quantity: 1,
-      rating: 4,
-    },
-    {
-      id: 2,
-      name: "Cotton T-Shirt 2",
-      type: "Shirt",
-      img: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img6.webp",
-      price: 10,
-      quantity: 1,
-      rating: 3,
-    },
-    {
-      id: 3,
-      name: "Cotton T-Shirt 3",
-      type: "Shirt",
-      img: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img7.webp",
-      price: 5,
-      quantity: 1,
-      rating: 2,
-    },
-  ]);*/
 
   return (
     <ItemContext.Provider

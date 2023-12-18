@@ -2,11 +2,9 @@ import { useContext } from "react";
 import { ItemContext } from "../../App";
 import { ForceUpdateContext } from "./Wishlist";
 import {
-  MDBBtn,
   MDBCardImage,
   MDBCol,
   MDBIcon,
-  MDBInput,
   MDBRow,
   MDBTypography,
 } from "mdb-react-ui-kit";
@@ -33,20 +31,6 @@ function WishlistItem({ item }: Props) {
   const forceUpdate = useContext(ForceUpdateContext);
 
   if (products.user) wishlistUrl = wishlisttUrlBase + products.user._id;
-
-  // function incrementQuantity() {
-  //   products.dispatch({ type: "increment", item: item });
-  //   console.log("Increment");
-  //   forceUpdate();
-  //   //setQuantity((c) => c + 1);
-  // }
-
-  // function decrementQuantity() {
-  //   products.dispatch({ type: "decrement", item: item });
-  //   console.log("Decrement");
-  //   forceUpdate();
-  //   //setQuantity((c) => c - 1);
-  // }
 
   function removeItem() {
     console.log(`Remove ${item.id}`);
@@ -77,17 +61,6 @@ function WishlistItem({ item }: Props) {
             {item.name}
           </MDBTypography>
         </MDBCol>
-        {/* <MDBCol md="3" lg="3" xl="3" className="d-flex align-items-center">
-          <MDBBtn color="link" className="px-2" onClick={decrementQuantity}>
-            <MDBIcon fas icon="minus" />
-          </MDBBtn>
-
-          <MDBInput type="number" min="0" value={item.quantity} size="sm" />
-
-          <MDBBtn color="link" className="px-2" onClick={incrementQuantity}>
-            <MDBIcon fas icon="plus" />
-          </MDBBtn>
-        </MDBCol> */}
         <MDBCol md="3" lg="2" xl="2" className="text-end">
           <MDBTypography tag="h6" className="mb-0">
             $ {item.price}
