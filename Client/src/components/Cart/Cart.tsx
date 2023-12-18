@@ -33,13 +33,13 @@ let orderUrl = orderUrlBase
 
 export default function Cart() {
   console.log("render Cart");
-  const cart = useContext(ItemContext);
-  if (cart.user) {
-    cartUrl = cartUrlBase + cart.user._id;
-    orderUrl = orderUrlBase + cart.user._id;
+  const products = useContext(ItemContext);
+  if (products.user) {
+    cartUrl = cartUrlBase + products.user._id;
+    orderUrl = orderUrlBase + products.user._id;
     useEffect(() => {
       axios.get(cartUrl).then((res) => {
-        cart.dispatch({ type: "setItems", items: res.data });
+        products.dispatch({ type: "setItems", items: res.data });
       });
     }, []);
   }
@@ -47,8 +47,8 @@ export default function Cart() {
   const [x, forceUpdate] = useReducer((x) => x + 1, 0);
 
   let cost = 0;
-  if (cart.items.length != 0) {
-    cart.items.map((item) => {
+  if (products.items.length != 0) {
+    products.items.map((item) => {
       cost += item.price * item.quantity;
     });
   }
@@ -62,20 +62,20 @@ export default function Cart() {
   function Checkout() {
     alert("Order Placed");
     console.log("Adding to Wishlist");
-    if (!cart.user) {
+    if (!products.user) {
       location.href = "/login";
       return;
     }
 
-    if (cart.items.length != 0) {
-      cart.items.map((item) => {
+    if (products.items.length != 0) {
+      products.items.map((item) => {
         console.log("Calling Order Dispatch addItem");
-        cart.ordersDispatch({
+        products.ordersDispatch({
           type: "addItem",
           item: item,
           url: orderUrl,
         });
-        cart.dispatch({ type: "removeItem", item: item, url: cartUrl });
+        products.dispatch({ type: "removeItem", item: item, url: cartUrl });
       });
     }
     forceUpdate();
@@ -102,15 +102,15 @@ export default function Cart() {
                           Shopping Cart
                         </MDBTypography>
                         <MDBTypography className="mb-0 text-muted">
-                          {cart.items.length} items
+                          {products.items.length} items
                         </MDBTypography>
                       </div>
 
                       <hr className="my-4" />
 
-                      {cart.items.length != 0 && (
+                      {products.items.length != 0 && (
                         <ForceUpdateContext.Provider value={forceUpdate}>
-                          {cart.items.map((item, index) => (
+                          {products.items.map((item, index) => (
                             <CartItem key={index} item={item} />
                           ))}
                         </ForceUpdateContext.Provider>
@@ -139,7 +139,7 @@ export default function Cart() {
 
                       <div className="d-flex justify-content-between mb-4">
                         <MDBTypography tag="h5" className="text-uppercase">
-                          {cart.items.length} items
+                          {products.items.length} items
                         </MDBTypography>
                         <MDBTypography tag="h5">$ {cost}</MDBTypography>
                       </div>

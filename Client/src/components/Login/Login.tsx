@@ -153,15 +153,9 @@ function Login() {
             />
 
             <div className="d-flex justify-content-center mb-4">
-              <MDBCheckbox
-                name="flexCheck"
-                id="flexCheckDefault"
-                label={
-                  <Link to="/terms">
-                    I have read and agree to the Terms and Conditions
-                  </Link>
-                }
-              />
+              <Link to="/terms">
+                Terms and Conditions
+              </Link>
             </div>
 
             <MDBBtn className="mb-4 w-100">Sign up</MDBBtn>

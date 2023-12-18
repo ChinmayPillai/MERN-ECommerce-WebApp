@@ -25,13 +25,13 @@ const Wishlist: Item = {
   margin: "me-2",
 };
 
-const Orders: Item = {
-  name: "Orders",
-  link: "/orders",
-  internal: true,
-  img: "Cart.png",
-  margin: "me-2",
-};
+// const Orders: Item = {
+//   name: "Orders",
+//   link: "/orders",
+//   internal: true,
+//   img: "Cart.png",
+//   margin: "me-2",
+// };
 
 let Login: Item = {
   name: "Login / SignUp",
@@ -42,10 +42,10 @@ let Login: Item = {
 };
 
 function NavBar() {
-  const cart = useContext(ItemContext);
-  const [x, forceUpdate] = useReducer((x) => x + 1, 0);
-  if (cart.user) {
-    Login.name = cart.user.name;
+  const products = useContext(ItemContext);
+  // const [x, forceUpdate] = useReducer((x) => x + 1, 0);
+  if (products.user) {
+    Login.name = products.user.name;
     Login.link = "/orders"
     //forceUpdate();
   }
