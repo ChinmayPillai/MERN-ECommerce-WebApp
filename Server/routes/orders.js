@@ -18,7 +18,7 @@ orderRouter.post('/:id', async (req, res) => {
         const user = await User.findById(req.params.id);
         console.log(req.body.item);
         console.log(user);
-        await user.orders.push(req.body.item);
+        await user.orders.unshift(req.body.item);
         await user.save();
         res.send('Added to Orders');
         return;
