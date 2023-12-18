@@ -53,7 +53,7 @@ export default function Wishlist() {
             >
               <MDBCardBody className="p-0">
                 {/* <MDBRow className="g-0"> */}
-                <MDBCol lg="8">
+                <MDBCol lg="12">
                   <div className="p-5">
                     <div className="d-flex justify-content-between align-items-center mb-5">
                       <MDBTypography

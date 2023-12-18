@@ -17,7 +17,7 @@ import {
   createContext,
   useEffect,
 } from "react";
-import CartItem from "./CartItem";
+import OrderItem from "./OrderItem";
 import { ItemContext } from "../../App";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -26,65 +26,21 @@ export const ForceUpdateContext = createContext<React.DispatchWithoutAction>(
   () => {}
 );
 
-const cartUrlBase = "http://localhost:3000/cart/";
 const orderUrlBase = "http://localhost:3000/orders/";
-let cartUrl = orderUrlBase
-let orderUrl = orderUrlBase
 
-export default function Cart() {
-  console.log("render Cart");
-  const cart = useContext(ItemContext);
-  if (cart.user) {
-    cartUrl = cartUrlBase + cart.user._id;
-    orderUrl = orderUrlBase + cart.user._id;
+export default function Orders() {
+  console.log("render Orders");
+  const products = useContext(ItemContext);
+  if (products.user) {
+    let orderUrl = orderUrlBase + products.user._id;
     useEffect(() => {
-      axios.get(cartUrl).then((res) => {
-        cart.dispatch({ type: "setItems", items: res.data });
+      axios.get(orderUrl).then((res) => {
+        products.ordersDispatch({ type: "setItems", items: res.data });
       });
     }, []);
   }
 
   const [x, forceUpdate] = useReducer((x) => x + 1, 0);
-
-  let cost = 0;
-  if (cart.items.length != 0) {
-    cart.items.map((item) => {
-      cost += item.price * item.quantity;
-    });
-  }
-
-  {
-    /*const [cost, setCost] = useState(tempCost);*/
-  }
-  const [delivery, setDelivery] = useState(0);
-  //const [totalPrice, setTotalPrice] = useState(cost);
-
-  function handleDelivery(e: React.ChangeEvent<HTMLSelectElement>) {
-    setDelivery(Number(e.target.value));
-    //setTotalPrice(cost + Number(e.target.value));
-  }
-
-  function Checkout() {
-    alert("Order Placed");
-    console.log("Adding to Wishlist");
-    if (!cart.user) {
-      location.href = "/login";
-      return;
-    }
-
-    if (cart.items.length != 0) {
-      cart.items.map((item) => {
-        console.log("Calling Order Dispatch addItem");
-        cart.ordersDispatch({
-          type: "addItem",
-          item: item,
-          url: orderUrl,
-        });
-        cart.dispatch({ type: "removeItem", item: item, url: cartUrl });
-      });
-      forceUpdate();
-    }
-  }
 
   return (
     <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
@@ -96,41 +52,42 @@ export default function Cart() {
               style={{ borderRadius: "15px" }}
             >
               <MDBCardBody className="p-0">
-                <MDBRow className="g-0">
-                  <MDBCol lg="8">
-                    <div className="p-5">
-                      <div className="d-flex justify-content-between align-items-center mb-5">
-                        <MDBTypography
-                          tag="h1"
-                          className="fw-bold mb-0 text-black"
-                        >
-                          Shopping Cart
-                        </MDBTypography>
-                        <MDBTypography className="mb-0 text-muted">
-                          {cart.items.length} items
-                        </MDBTypography>
-                      </div>
-
-                      <hr className="my-4" />
-
-                      {cart.items.length != 0 && (
-                        <ForceUpdateContext.Provider value={forceUpdate}>
-                          {cart.items.map((item, index) => (
-                            <CartItem key={index} item={item} />
-                          ))}
-                        </ForceUpdateContext.Provider>
-                      )}
-
-                      <div className="pt-5">
-                        <MDBTypography tag="h6" className="mb-0">
-                          <MDBCardText tag="a" href="#!" className="text-body">
-                            <MDBIcon fas icon="long-arrow-alt-left me-2" />
-                            <Link to="/">Back to shop</Link>
-                          </MDBCardText>
-                        </MDBTypography>
-                      </div>
+                {/* <MDBRow className="g-0"> */}
+                <MDBCol lg="12">
+                  <div className="p-5">
+                    <div className="d-flex justify-content-between align-items-center mb-5">
+                      <MDBTypography
+                        tag="h1"
+                        className="fw-bold mb-0 text-black"
+                      >
+                        Orders
+                      </MDBTypography>
+                      <MDBTypography className="mb-0 text-muted">
+                        {products.orders.length} items
+                      </MDBTypography>
                     </div>
-                  </MDBCol>
+
+                    <hr className="my-8" />
+
+                    {products.wishlist.length != 0 && (
+                      <ForceUpdateContext.Provider value={forceUpdate}>
+                        {products.orders.map((item, index) => (
+                          <OrderItem key={index} item={item} />
+                        ))}
+                      </ForceUpdateContext.Provider>
+                    )}
+
+                    <div className="pt-5">
+                      <MDBTypography tag="h6" className="mb-0">
+                        <MDBCardText tag="a" href="#!" className="text-body">
+                          <MDBIcon fas icon="long-arrow-alt-left me-2" />
+                          <Link to="/">Back to shop</Link>
+                        </MDBCardText>
+                      </MDBTypography>
+                    </div>
+                  </div>
+                </MDBCol>
+                {/*
                   <MDBCol lg="4" className="bg-grey">
                     <div className="p-5">
                       <MDBTypography
@@ -186,12 +143,12 @@ export default function Cart() {
                         </MDBTypography>
                       </div>
 
-                      <MDBBtn color="dark" block size="lg" onClick={Checkout}>
+                      <MDBBtn color="dark" block size="lg">
                         Checkout
                       </MDBBtn>
                     </div>
-                  </MDBCol>
-                </MDBRow>
+                        </MDBCol>*/}
+                {/* </MDBRow> */}
               </MDBCardBody>
             </MDBCard>
           </MDBCol>

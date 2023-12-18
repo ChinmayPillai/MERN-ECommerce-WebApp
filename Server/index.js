@@ -6,6 +6,7 @@ const User = require('./models/UserModel');
 const jwt = require('jsonwebtoken');
 const cartRouter = require('./routes/cart.js');
 const wishlistRouter = require('./routes/wishlist.js');
+const orderRouter = require('./routes/orders.js');
 const bcrypt = require('bcryptjs');
 
 app.use(cors());
@@ -61,7 +62,9 @@ app.post('/register', async (req, res) => {
             name: req.body.name,
             email: req.body.email,
             password: newPass,
-            cart: []
+            cart: [],
+            wishlist: [],
+            orders: []
         })
         res.send(req.body);
     }
@@ -73,6 +76,7 @@ app.post('/register', async (req, res) => {
 
 app.use('/cart', cartRouter);
 app.use('/wishlist', wishlistRouter);
+app.use('/orders', orderRouter);
 
 app.get('*', async (req, res) => {
     res.send('Unknown Request');
