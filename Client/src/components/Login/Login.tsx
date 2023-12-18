@@ -78,6 +78,7 @@ function Login() {
           <MDBTabsLink
             onClick={() => handleJustifyClick("tab1")}
             active={justifyActive === "tab1"}
+            style={justifyActive !== "tab1" ? {backgroundColor: "#ccc"} : {}}
           >
             Login
           </MDBTabsLink>
@@ -86,6 +87,7 @@ function Login() {
           <MDBTabsLink
             onClick={() => handleJustifyClick("tab2")}
             active={justifyActive === "tab2"}
+            style={justifyActive !== "tab2" ? {backgroundColor: "#ccc"} : {}}
           >
             Register
           </MDBTabsLink>
