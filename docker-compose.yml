@@ -32,6 +32,14 @@ services:
       - web
     networks:
       - mern-ecommerse-website
+  redis:
+    image: redis/redis-stack:latest
+    ports:
+      - 6379:6379
+      - 8001:8001
+    networks:
+      - mern-ecommerse-website
+
 
 networks:
   mern-ecommerse-website:

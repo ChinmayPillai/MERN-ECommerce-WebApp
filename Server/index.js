@@ -8,6 +8,7 @@ const cartRouter = require('./routes/cart.js');
 const wishlistRouter = require('./routes/wishlist.js');
 const orderRouter = require('./routes/orders.js');
 const bcrypt = require('bcryptjs');
+const redis = require('./redis-client.js') 
 
 app.use(cors());
 app.use(express.json());
@@ -18,13 +19,22 @@ const privateKey = '123';
 app.get('/users', async(req, res) => {
 
     try{
-    const token = req.headers['x-access-token'];
+        const token = req.headers['x-access-token'];
 
-    const decoded = jwt.verify(token, privateKey)
-    const id = decoded._id;
+        const decoded = jwt.verify(token, privateKey)
+        const id = decoded._id;
 
-    const user = await User.findById(id)
-    res.send(user);
+        const user = await redis.call('JSON.GET', 'user:'+id)
+
+        console.log(user)
+
+        if(!user){
+            user = await User.findById(id)
+            redis.call('JSON.SET', 'user:'+id, '.', JSON.stringify(user))
+            redis.expire("user:"+id, 3600)
+        }
+
+        res.send(user);
     }
     catch(err){
         res.send({error: err.message});
@@ -41,6 +51,9 @@ app.post('/login', async (req, res) => {
         return;
     }
     
+    redis.call('JSON.SET', 'user:'+user._id, '.', JSON.stringify(user))
+    redis.expire("user:"+user._id, 3600)
+
     const validPass = await bcrypt.compare(req.body.password, user.password);
 
     if(validPass){
