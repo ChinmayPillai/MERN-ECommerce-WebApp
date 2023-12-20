@@ -8,7 +8,7 @@ const cartRouter = require('./routes/cart.js');
 const wishlistRouter = require('./routes/wishlist.js');
 const orderRouter = require('./routes/orders.js');
 const bcrypt = require('bcryptjs');
-const redis = require('./redis-client.js') 
+const redis = require('./redis-client') 
 
 app.use(cors());
 app.use(express.json());
@@ -25,8 +25,6 @@ app.get('/users', async(req, res) => {
         const id = decoded._id;
 
         const user = await redis.call('JSON.GET', 'user:'+id)
-
-        console.log(user)
 
         if(!user){
             user = await User.findById(id)
