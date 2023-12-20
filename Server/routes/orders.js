@@ -29,18 +29,5 @@ orderRouter.post('/:id', async (req, res) => {
     }
 })
 
-// orderRouter.put('/:id', async (req, res) => {
-//     try{
-//         console.log(req.params.id + '\n' + req.body.item.id + '\n')
-//         if(req.body.action === 'delete'){
-//             const user = await User.findOneAndUpdate({'_id': req.params.id}, {'$pull': {'wishlist': {id: req.body.item.id}}})
-//             res.send(user);
-//         }
-//     }
-//     catch(err){
-//         console.log(err.message + '\n');
-//         res.send(err.message);
-//     }
-// })
 
 module.exports = orderRouter;
