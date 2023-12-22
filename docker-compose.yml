@@ -6,7 +6,7 @@ services:
     ports:
       - 5173
     networks:
-      - mern-ecommerse-website
+      - mern-ecommerce-website
     tty: true
   api:
     build: ./Server
@@ -15,15 +15,15 @@ services:
     depends_on:
       - db
     networks:
-      - mern-ecommerse-website
+      - mern-ecommerce-website
   db:
     image: mongo:4.0-xenial
     ports:
       - 27017:27017
     networks:
-      - mern-ecommerse-website
+      - mern-ecommerce-website
     volumes:
-      - mern-ecommerse-website:/data/db
+      - mern-ecommerce-website:/data/db
   nginx:
     build: ./NginX
     ports:
@@ -31,20 +31,20 @@ services:
     depends_on:
       - web
     networks:
-      - mern-ecommerse-website
+      - mern-ecommerce-website
   redis:
     image: redis/redis-stack:latest
     ports:
       - 6379:6379
       - 8001:8001
     networks:
-      - mern-ecommerse-website
+      - mern-ecommerce-website
 
 
 networks:
-  mern-ecommerse-website:
+  mern-ecommerce-website:
     driver: bridge
 
 volumes:  
-  mern-ecommerse-website:
+  mern-ecommerce-website:
     driver: local
