@@ -37,6 +37,5 @@ jobs:
           application_name: mern-ecommerce-webapp
           environment_name: Mern-ecommerce-webapp-env
           existing_bucket_name: elasticbeanstalk-ap-south-1-788157071253
-          version_label: "mern-ecommerce-webapp-v1"
           region: ap-south-1
           deployment_package: deploy.zip
