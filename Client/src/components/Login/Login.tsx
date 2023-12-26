@@ -15,9 +15,7 @@ import {
   MDBCheckbox,
 } from "mdb-react-ui-kit";
 import axios from "axios";
-
-const loginUrl = "http://localhost:3000/login";
-const registerUrl = "http://localhost:3000/register";
+import { loginUrl, registerUrl } from "../../Util/apiUrls";
 
 function Login() {
   const [justifyActive, setJustifyActive] = useState("tab1");
@@ -78,7 +76,7 @@ function Login() {
           <MDBTabsLink
             onClick={() => handleJustifyClick("tab1")}
             active={justifyActive === "tab1"}
-            style={justifyActive !== "tab1" ? {backgroundColor: "#ccc"} : {}}
+            style={justifyActive !== "tab1" ? { backgroundColor: "#ccc" } : {}}
           >
             Login
           </MDBTabsLink>
@@ -87,7 +85,7 @@ function Login() {
           <MDBTabsLink
             onClick={() => handleJustifyClick("tab2")}
             active={justifyActive === "tab2"}
-            style={justifyActive !== "tab2" ? {backgroundColor: "#ccc"} : {}}
+            style={justifyActive !== "tab2" ? { backgroundColor: "#ccc" } : {}}
           >
             Register
           </MDBTabsLink>
@@ -155,9 +153,7 @@ function Login() {
             />
 
             <div className="d-flex justify-content-center mb-4">
-              <Link to="/terms">
-                Terms and Conditions
-              </Link>
+              <Link to="/terms">Terms and Conditions</Link>
             </div>
 
             <MDBBtn className="mb-4 w-100">Sign up</MDBBtn>

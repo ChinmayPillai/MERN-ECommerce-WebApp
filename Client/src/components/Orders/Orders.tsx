@@ -8,22 +8,16 @@ import {
   MDBRow,
   MDBTypography,
 } from "mdb-react-ui-kit";
-import {
-  useContext,
-  useReducer,
-  createContext,
-  useEffect,
-} from "react";
+import { useContext, useReducer, createContext, useEffect } from "react";
 import OrderItem from "./OrderItem";
 import { ItemContext } from "../../App";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { orderUrlBase } from "../../Util/apiUrls";
 
 export const ForceUpdateContext = createContext<React.DispatchWithoutAction>(
   () => {}
 );
-
-const orderUrlBase = "http://localhost:3000/orders/";
 
 export default function Orders() {
   console.log("render Orders");
@@ -85,7 +79,6 @@ export default function Orders() {
                     </div>
                   </div>
                 </MDBCol>
-                
               </MDBCardBody>
             </MDBCard>
           </MDBCol>

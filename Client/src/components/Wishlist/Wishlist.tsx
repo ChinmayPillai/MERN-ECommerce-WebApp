@@ -8,22 +8,16 @@ import {
   MDBRow,
   MDBTypography,
 } from "mdb-react-ui-kit";
-import {
-  useContext,
-  useReducer,
-  createContext,
-  useEffect,
-} from "react";
+import { useContext, useReducer, createContext, useEffect } from "react";
 import WishlistItem from "./WishlistItem";
 import { ItemContext } from "../../App";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { wishlistUrlBase } from "../../Util/apiUrls";
 
 export const ForceUpdateContext = createContext<React.DispatchWithoutAction>(
   () => {}
 );
-
-const wishlistUrlBase = "http://localhost:3000/wishlist/";
 
 export default function Wishlist() {
   console.log("render Wishlist");

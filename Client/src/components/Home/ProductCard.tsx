@@ -9,21 +9,20 @@ import {
 import { Item } from "../Cart/CartItem";
 import { ItemContext } from "../../App";
 import { useContext } from "react";
+import { cartUrlBase, wishlistUrlBase } from "../../Util/apiUrls";
 
 interface Props {
   item: Item;
 }
 
-const addToCartUrlBase = "http://localhost:3000/cart/";
-let addToCartUrl = addToCartUrlBase;
-const addToWishlistUrlBase = "http://localhost:3000/wishlist/";
-let addToWishlistUrl = addToWishlistUrlBase;
+let addToCartUrl = cartUrlBase;
+let addToWishlistUrl = wishlistUrlBase;
 
 export default function ProductCard({ item }: Props) {
   const cart = useContext(ItemContext);
   if (cart.user) {
-    addToCartUrl = addToCartUrlBase + cart.user._id;
-    addToWishlistUrl = addToWishlistUrlBase + cart.user._id;
+    addToCartUrl = cartUrlBase + cart.user._id;
+    addToWishlistUrl = wishlistUrlBase + cart.user._id;
   }
 
   function addToCart() {

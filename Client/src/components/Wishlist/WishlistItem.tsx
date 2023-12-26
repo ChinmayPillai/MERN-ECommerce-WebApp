@@ -8,6 +8,7 @@ import {
   MDBRow,
   MDBTypography,
 } from "mdb-react-ui-kit";
+import { wishlistUrlBase } from "../../Util/apiUrls";
 
 export type Item = {
   id: number;
@@ -22,15 +23,14 @@ export type Item = {
 interface Props {
   item: Item;
 }
-const wishlisttUrlBase = "http://localhost:3000/wishlist/";
-let wishlistUrl = wishlisttUrlBase;
+let wishlistUrl = wishlistUrlBase;
 
 function WishlistItem({ item }: Props) {
   console.log("render WishlistItem");
   const products = useContext(ItemContext);
   const forceUpdate = useContext(ForceUpdateContext);
 
-  if (products.user) wishlistUrl = wishlisttUrlBase + products.user._id;
+  if (products.user) wishlistUrl = wishlistUrlBase + products.user._id;
 
   function removeItem() {
     console.log(`Remove ${item.id}`);

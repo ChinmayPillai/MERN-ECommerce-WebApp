@@ -10,6 +10,7 @@ import {
   MDBRow,
   MDBTypography,
 } from "mdb-react-ui-kit";
+import { cartUrlBase } from "../../Util/apiUrls";
 
 export type Item = {
   id: number;
@@ -24,7 +25,6 @@ export type Item = {
 interface Props {
   item: Item;
 }
-const cartUrlBase = "http://localhost:3000/cart/";
 let cartUrl = cartUrlBase;
 
 function CartItem({ item }: Props) {

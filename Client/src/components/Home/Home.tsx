@@ -3,8 +3,7 @@ import { ItemContext } from "../../App";
 import { useEffect, useContext } from "react";
 import * as jose from "jose";
 import axios from "axios";
-
-const userURL = "http://localhost:3000/users";
+import { userURL } from "../../Util/apiUrls";
 
 export default function Home() {
   const context = useContext(ItemContext);

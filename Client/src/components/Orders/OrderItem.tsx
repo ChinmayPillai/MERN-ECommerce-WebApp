@@ -1,12 +1,8 @@
 import { useContext } from "react";
 import { ItemContext } from "../../App";
 import { ForceUpdateContext } from "./Orders";
-import {
-  MDBCardImage,
-  MDBCol,
-  MDBRow,
-  MDBTypography,
-} from "mdb-react-ui-kit";
+import { MDBCardImage, MDBCol, MDBRow, MDBTypography } from "mdb-react-ui-kit";
+import { orderUrlBase } from "../../Util/apiUrls";
 
 export type Item = {
   id: number;
@@ -21,7 +17,6 @@ export type Item = {
 interface Props {
   item: Item;
 }
-const orderUrlBase = "http://localhost:3000/orders/";
 let orderUrl = orderUrlBase;
 
 function OrderItem({ item }: Props) {
@@ -56,7 +51,7 @@ function OrderItem({ item }: Props) {
           </MDBTypography>
         </MDBCol>
         <MDBCol md="1" lg="1" xl="1" className="text-end">
-        <MDBTypography tag="h6" className="mb-0">
+          <MDBTypography tag="h6" className="mb-0">
             x{item.quantity}
           </MDBTypography>
         </MDBCol>

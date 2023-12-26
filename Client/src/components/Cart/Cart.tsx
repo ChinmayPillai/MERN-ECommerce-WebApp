@@ -21,15 +21,14 @@ import CartItem from "./CartItem";
 import { ItemContext } from "../../App";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { cartUrlBase, orderUrlBase } from "../../Util/apiUrls";
 
 export const ForceUpdateContext = createContext<React.DispatchWithoutAction>(
   () => {}
 );
 
-const cartUrlBase = "http://localhost:3000/cart/";
-const orderUrlBase = "http://localhost:3000/orders/";
-let cartUrl = orderUrlBase
-let orderUrl = orderUrlBase
+let cartUrl = orderUrlBase;
+let orderUrl = orderUrlBase;
 
 export default function Cart() {
   console.log("render Cart");
