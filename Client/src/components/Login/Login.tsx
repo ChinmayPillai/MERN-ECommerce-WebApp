@@ -1,8 +1,7 @@
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ItemContext } from "../../App";
 import {
   MDBContainer,
   MDBTabs,
@@ -12,7 +11,6 @@ import {
   MDBTabsPane,
   MDBBtn,
   MDBInput,
-  MDBCheckbox,
 } from "mdb-react-ui-kit";
 import axios from "axios";
 import { loginUrl, registerUrl } from "../../Util/apiUrls";

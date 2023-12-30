@@ -8,7 +8,7 @@ import {
   MDBRow,
   MDBTypography,
 } from "mdb-react-ui-kit";
-import { useContext, useReducer, createContext, useEffect } from "react";
+import { useContext, createContext, useEffect } from "react";
 import OrderItem from "./OrderItem";
 import { ItemContext } from "../../App";
 import { Link } from "react-router-dom";
@@ -33,7 +33,7 @@ export default function Orders() {
     }, []);
   }
 
-  const [x, forceUpdate] = useReducer((x) => x + 1, 0);
+  // const [x, forceUpdate] = useReducer((x) => x + 1, 0);
 
   return (
     <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
@@ -62,11 +62,11 @@ export default function Orders() {
                     <hr className="my-8" />
 
                     {products.orders.length != 0 && (
-                      <ForceUpdateContext.Provider value={forceUpdate}>
-                        {products.orders.map((item, index) => (
-                          <OrderItem key={index} item={item} />
-                        ))}
-                      </ForceUpdateContext.Provider>
+                        <div>
+                          {products.orders.map((item, index) => (
+                            <OrderItem key={index} item={item} />
+                          ))}
+                        </div>
                     )}
 
                     <div className="pt-5">

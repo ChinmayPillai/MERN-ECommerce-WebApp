@@ -48,7 +48,7 @@ export default function Cart() {
   let cost = 0;
   if (products.items.length != 0) {
     products.items.map((item) => {
-      cost += item.price * item.quantity;
+      cost += item.price * item.quantity + (x-x);
     });
   }
 

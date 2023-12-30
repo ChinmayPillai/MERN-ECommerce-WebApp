@@ -1,8 +1,8 @@
-import { useContext } from "react";
-import { ItemContext } from "../../App";
-import { ForceUpdateContext } from "./Orders";
+// import { useContext } from "react";
+// import { ItemContext } from "../../App";
+// import { ForceUpdateContext } from "./Orders";
 import { MDBCardImage, MDBCol, MDBRow, MDBTypography } from "mdb-react-ui-kit";
-import { orderUrlBase } from "../../Util/apiUrls";
+// import { orderUrlBase } from "../../Util/apiUrls";
 
 export type Item = {
   id: number;
@@ -17,14 +17,14 @@ export type Item = {
 interface Props {
   item: Item;
 }
-let orderUrl = orderUrlBase;
+// let orderUrl = orderUrlBase;
 
 function OrderItem({ item }: Props) {
   console.log("render OrderItem");
-  const products = useContext(ItemContext);
-  const forceUpdate = useContext(ForceUpdateContext);
+  // const products = useContext(ItemContext);
+  // const forceUpdate = useContext(ForceUpdateContext);
 
-  if (products.user) orderUrl = orderUrlBase + products.user._id;
+  // if (products.user) orderUrl = orderUrlBase + products.user._id;
 
   return (
     <>

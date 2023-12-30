@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { Item, NavItem } from "./NavItem";
-import { useContext, useReducer } from "react";
+import { useContext } from "react";
 import { ItemContext } from "../../App";
 
 const Home: Item = {

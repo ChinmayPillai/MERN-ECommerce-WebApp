@@ -62,7 +62,7 @@ export default function Wishlist() {
                     {products.wishlist.length != 0 && (
                       <ForceUpdateContext.Provider value={forceUpdate}>
                         {products.wishlist.map((item, index) => (
-                          <WishlistItem key={index} item={item} />
+                          <WishlistItem key={index + (x-x)} item={item} />
                         ))}
                       </ForceUpdateContext.Provider>
                     )}
