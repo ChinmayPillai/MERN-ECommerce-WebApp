@@ -32,26 +32,22 @@ export default function ProductCard({ item }: Props) {
       return;
     }
 
-    const inc = new Promise<string>((resolve, reject) => {
-      if (cart.items.length == 0) reject();
-      cart.items.map((cartItem, index, arr) => {
-        if (cartItem.id === item.id) {
+    if (cart.items.length != 0){
+      for(let i=0; i<cart.items.length; i++){
+        if (cart.items[i].id === item.id) {
           console.log("Calling Dispatch increment");
           cart.dispatch({ type: "increment", item: item, url: addToCartUrl });
-          resolve("Increment");
+          alert("Incresed Quantity in Cart");
+          return;
         }
-        if (index + 1 === arr.length) reject();
-      });
-    });
+      }
+    }   
+    
+    console.log("Calling Dispatch addItem");
+    cart.dispatch({ type: "addItem", item: item, url: addToCartUrl });
+    alert("Added to Cart");
+    return;
 
-    inc.then(() => alert("Incresed Quantity in Cart"));
-
-    inc.catch(() => {
-      console.log("Calling Dispatch addItem");
-      cart.dispatch({ type: "addItem", item: item, url: addToCartUrl });
-      alert("Added to Cart");
-      return;
-    });
   }
 
   function addToWishlist() {
@@ -61,28 +57,24 @@ export default function ProductCard({ item }: Props) {
       return;
     }
 
-    const inc = new Promise<string>((resolve, reject) => {
-      if (cart.wishlist.length == 0) reject();
-      cart.wishlist.map((cartItem, index, arr) => {
-        if (cartItem.id === item.id) {
-          resolve("Increment");
+    if (cart.wishlist.length != 0){
+      for(let i=0; i<cart.wishlist.length; i++){
+        if (cart.wishlist[i].id === item.id) {
+          alert("Already in Wishlist");
+          return;
         }
-        if (index + 1 === arr.length) reject();
-      });
-    });
+      }
+    }
 
-    inc.then(() => alert("Already in Wishlist"));
-
-    inc.catch(() => {
-      console.log("Calling Wishlist Dispatch addItem");
-      cart.wishlistDispatch({
-        type: "addItem",
-        item: item,
-        url: addToWishlistUrl,
-      });
-      alert("Added to Wishlist");
-      return;
+    console.log("Calling Wishlist Dispatch addItem");
+    cart.wishlistDispatch({
+      type: "addItem",
+      item: item,
+      url: addToWishlistUrl,
     });
+    alert("Added to Wishlist");
+    return;
+    
   }
 
   const stars = [];
