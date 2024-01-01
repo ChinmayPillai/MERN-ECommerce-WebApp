@@ -49,6 +49,11 @@ function reducer(items: Array<Item>, action: any): Array<Item> {
         }
       });
       return items;
+    case "clear":
+      console.log("Clear");
+      axios.put(action.url, { action: "clear" });
+      items = [];
+      return items;
     case "setItems":
       items = action.items;
       return items;

@@ -24,7 +24,7 @@ cartRouter.post('/:id', async (req, res) => {
     console.log('Cart Post')
     try{
         const user = await User.findById(req.params.id);
-        console.log(req.body.item);
+        // console.log(req.body.item);
         //console.log(user);
         await user.cart.unshift(req.body.item);
         await user.save();
@@ -39,7 +39,7 @@ cartRouter.post('/:id', async (req, res) => {
 
 cartRouter.put('/:id', async (req, res) => {
     try{
-        console.log(req.params.id + '\n' + req.body.item.id + '\n')
+        //console.log(req.params.id + '\n' + req.body.item.id + '\n')
         if(req.body.action === 'increment'){
             console.log(`Incrementing Quantity of ${req.params.id}\n`);
             const user = await User.findOneAndUpdate({'_id': req.params.id, 'cart.id': req.body.item.id}, {'$inc': {'cart.$.quantity': 1}})
@@ -51,7 +51,16 @@ cartRouter.put('/:id', async (req, res) => {
             res.send(user);
         }
         else if(req.body.action === 'delete'){
+            console.log(`Deleting ${req.params.id}\n`);
             const user = await User.findOneAndUpdate({'_id': req.params.id}, {'$pull': {'cart': {id: req.body.item.id}}})
+            res.send(user);
+        }else if(req.body.action === 'clear'){
+            const user = await User.findByIdAndUpdate(
+                req.params.id,
+                { $set: { cart: [] } },
+                { new: true }
+            );
+            console.log(user.cart)
             res.send(user);
         }
     }

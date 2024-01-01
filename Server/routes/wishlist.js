@@ -23,8 +23,8 @@ wishlistRouter.post('/:id', async (req, res) => {
     console.log('Wishlist Post')
     try{
         const user = await User.findById(req.params.id);
-        console.log(req.body.item);
-        console.log(user);
+        //console.log(req.body.item);
+        
         await user.wishlist.unshift(req.body.item);
         await user.save();
         res.send('Added to Wishlist');
