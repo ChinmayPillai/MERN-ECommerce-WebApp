@@ -29,10 +29,29 @@ orderRouter.post('/:id', async (req, res) => {
         await user.save();
         res.send('Added to Orders');
         return;
-        }
-        catch(err){
-            console.log(err.message + '\n');
-            res.send(err.message);
+    }
+    catch(err){
+        console.log(err.message + '\n');
+        res.send(err.message);
+    }
+})
+
+orderRouter.put('/:id', async (req, res) => {
+    console.log('Order Put')
+    try{
+        const user = await User.findById(req.params.id);
+        //console.log(req.body.item);
+        req.body.items.map(async (item) => {
+            await user.orders.unshift(item);
+        });
+        
+        await user.save();
+        res.send('Updated Orders');
+        return;
+    }
+    catch(err){
+        console.log(err.message + '\n');
+        res.send(err.message);
     }
 })
 

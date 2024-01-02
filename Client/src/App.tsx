@@ -94,9 +94,16 @@ function Ordersreducer(items: Array<Item>, action: any): Array<Item> {
   console.log("Orders Reducer");
   switch (action.type) {
     case "addItem":
-      items.push(action.item);
+      items.unshift(action.item);
       axios.post(action.url, { item: action.item });
       console.log(`Added Order Item, Id: ${action.item.id}`);
+      return items;
+    case "update":     
+      axios.put(action.url, { items: action.items });
+      action.items.map(async (item: Item) => {
+        items.unshift(item);
+      }); 
+      console.log(`Updated Orders`);
       return items;
     case "setItems":
       items = action.items;

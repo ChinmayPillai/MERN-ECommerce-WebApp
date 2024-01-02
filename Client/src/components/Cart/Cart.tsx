@@ -70,17 +70,8 @@ export default function Cart() {
       return;
     }
 
-    products.items.map((item) => {
-      console.log("Calling Order Dispatch addItem");
-      products.ordersDispatch({
-        type: "addItem",
-        item: item,
-        url: orderUrl,
-      });
-      products.dispatch({ type: "removeItem", item: item, url: cartUrl });
-    });
-    
-    //products.dispatch({ type: "clear", url: cartUrl });
+    products.ordersDispatch({ type: "update", items: products.items, url: orderUrl });
+    products.dispatch({ type: "clear", url: cartUrl });
 
     forceUpdate();
     alert("Order Placed");
