@@ -1,12 +1,20 @@
 # Full-Stack Web Aplication - ECom by Chinmay
-
 An E-Commerce Full Stack Website made on the MERN tech stack using TypeScript.
-</br>
-User specific data of every user is stored as an encrypted document on a MongoDB(NoSQL) database and is update on interaction with the application.
 
 ## Architechture
 ![Archituchture.png](./Images/Archituchture.jpg)
 </br></br></br>
+
+User specific data of every user is stored as an encrypted document on a **MongoDB(NoSQL)** database and is update on interaction with the application.
+</br>
+Implemented **User Authentication** using **JWT** & Data Encryption through hashing to securely verify & store user data
+</br>
+Integrated **Redis** into architechture to improve app performace by caching user data for faster retrival and reduced latency
+</br>
+Containerized the application using **Docker** and **Docker-Compose** and utilised **NginX** to act as a reverse proxy server
+</br>
+Deployed on **AWS EC2** using **AWS Elastic Beanstalk** & **GitHub Actions** for deployment, scaling & load balancing
+</br>
 
 ![Homepage.jpg](./Images/Homepage.png)
 </br></br></br>
@@ -17,7 +25,6 @@ User specific data of every user is stored as an encrypted document on a MongoDB
 ![Register.jpg](./Images/Register.png)
 
 ## Technologies Used:
-
 1. React
 2. Express
 3. MongoDB
@@ -35,7 +42,6 @@ User specific data of every user is stored as an encrypted document on a MongoDB
 15. nodemon
 
 ## Building
-
 1. `npm install` in the Client and Server folders
 2. Install MongoDB Community Server
 3. `npm run dev` in the Client and Server folders
