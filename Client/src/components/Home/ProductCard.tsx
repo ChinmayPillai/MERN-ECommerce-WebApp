@@ -80,10 +80,10 @@ export default function ProductCard({ item }: Props) {
   const stars = [];
   if (item.rating) {
     for (let i = 0; i < item.rating; i++) {
-      stars.push(<MDBIcon fas icon="star" />);
+      stars.push(<MDBIcon key={i} fas icon="star" />);
     }
     for (let i = item.rating; i < 5; i++) {
-      stars.push(<MDBIcon far icon="star" />);
+      stars.push(<MDBIcon key={i} far icon="star" />);
     }
   }
 
