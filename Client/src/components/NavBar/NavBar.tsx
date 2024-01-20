@@ -25,14 +25,6 @@ const Wishlist: Item = {
   margin: "me-2",
 };
 
-// const Orders: Item = {
-//   name: "Orders",
-//   link: "/orders",
-//   internal: true,
-//   img: "Cart.png",
-//   margin: "me-2",
-// };
-
 let Login: Item = {
   name: "Login / SignUp",
   link: "/login",
@@ -43,11 +35,9 @@ let Login: Item = {
 
 function NavBar() {
   const products = useContext(ItemContext);
-  // const [x, forceUpdate] = useReducer((x) => x + 1, 0);
   if (products.user) {
     Login.name = products.user.name;
     Login.link = "/orders"
-    //forceUpdate();
   }
 
   function Logout() {
@@ -61,7 +51,6 @@ function NavBar() {
         className="navbar sticky-top bg-dark navbar-expand-lg"
         data-bs-theme="dark"
       >
-        {/*<nav className="navbar bg-primary navbar-expand-lg bg-body-tertiary">*/}
         <div className="container-fluid">
           <a className="navbar-brand" href="/#">
             ECom
@@ -79,21 +68,14 @@ function NavBar() {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              {/*<li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/#">
-                  Home
-                </a>
-              </li>*/}
               <NavItem item={Home} />
             </ul>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-flex">
               <NavItem key={1} item={Wishlist} />
               <NavItem key={2} item={Cart} />
-              {/* <NavItem key={2} item={Orders} /> */}
               <NavItem key={3} item={Login} />
               <li className="nav-item my-2">
                 <img
-                  // className="me-2"
                   src="Logout.png"
                   alt="Logout"
                   width="30"
@@ -102,17 +84,6 @@ function NavBar() {
                 ></img>
               </li>
             </ul>
-            {/*<form className="d-flex" role="search">
-                <input
-                  className="form-control me-2"
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                />
-                <button className="btn btn-outline-success" type="submit">
-                  Search
-                </button>
-              </form>*/}
           </div>
         </div>
       </nav>
