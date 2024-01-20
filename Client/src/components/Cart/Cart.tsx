@@ -114,7 +114,7 @@ export default function Cart() {
 
                       <div className="pt-5">
                         <MDBTypography tag="h6" className="mb-0">
-                          <MDBCardText tag="a" href="#!" className="text-body">
+                          <MDBCardText className="text-body">
                             <MDBIcon fas icon="long-arrow-alt-left me-2" />
                             <Link to="/">Back to shop</Link>
                           </MDBCardText>
