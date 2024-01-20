@@ -5,15 +5,15 @@ An E-Commerce Full Stack Website made on the MERN tech stack using TypeScript.
 ![Architecture.jpg](./Images/Architecture.jpg)
 </br></br></br>
 
-User specific data of every user is stored as an encrypted document on a **MongoDB(NoSQL)** database and is update on interaction with the application.
-</br>
-Implemented **User Authentication** using **JWT** & Data Encryption through hashing to securely verify & store user data
-</br>
-Integrated **Redis** into architechture to improve app performace by caching user data for faster retrival and reduced latency
-</br>
-Containerized the application using **Docker** and **Docker-Compose** and utilised **NginX** to act as a reverse proxy server
-</br>
-Deployed on **AWS EC2** using **AWS Elastic Beanstalk** & **GitHub Actions** for deployment, scaling & load balancing
+- User specific data of every user is stored as an encrypted document on a **MongoDB(NoSQL)** database and is update on interaction with the application.
+
+- Implemented **User Authentication** using **JWT** & Data Encryption through hashing to securely verify & store user data
+
+- Integrated **Redis** into architechture to improve app performace by caching user data for faster retrival and reduced latency
+
+- Containerized the application using **Docker** and **Docker-Compose** and utilised **NginX** to act as a reverse proxy server
+
+- Deployed on **AWS EC2** using **AWS Elastic Beanstalk** & **GitHub Actions** for deployment, scaling & load balancing
 </br>
 
 ![Homepage.jpg](./Images/Homepage.png)
