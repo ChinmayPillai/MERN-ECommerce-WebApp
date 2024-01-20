@@ -2,7 +2,7 @@
 An E-Commerce Full Stack Website made on the MERN tech stack using TypeScript.
 
 ## Architechture
-![Archituchture.png](./Images/Archituchture.jpg)
+![Architecture.jpg](./Images/Architecture.jpg)
 </br></br></br>
 
 User specific data of every user is stored as an encrypted document on a **MongoDB(NoSQL)** database and is update on interaction with the application.
