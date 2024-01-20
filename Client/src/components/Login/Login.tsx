@@ -96,7 +96,7 @@ function Login() {
             <MDBInput
               wrapperClass="mb-4"
               label="Email address"
-              id="form1"
+              id="loginEmail"
               type="email"
               placeholder="abc@gmail.com"
               value={email}
@@ -105,7 +105,7 @@ function Login() {
             <MDBInput
               wrapperClass="mb-4"
               label="Password"
-              id="form2"
+              id="loginPassword"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -126,7 +126,7 @@ function Login() {
             <MDBInput
               wrapperClass="mb-4"
               label="Name"
-              id="form1"
+              id="registerName"
               type="text"
               placeholder="Chinmay Pillai"
               value={name}
@@ -135,7 +135,7 @@ function Login() {
             <MDBInput
               wrapperClass="mb-4"
               label="Email"
-              id="form1"
+              id="registerEmail"
               type="email"
               placeholder="abc@gmail.com"
               value={email}
@@ -144,7 +144,7 @@ function Login() {
             <MDBInput
               wrapperClass="mb-4"
               label="Password"
-              id="form1"
+              id="registerPassword"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
