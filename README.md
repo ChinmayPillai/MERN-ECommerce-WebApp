@@ -14,7 +14,9 @@ An E-Commerce Full Stack Website made on the MERN tech stack using TypeScript.
 - Containerized the application using **Docker** and **Docker-Compose** and utilised **NginX** to act as a reverse proxy server
 
 - Deployed on **AWS EC2** using **AWS Elastic Beanstalk** & **GitHub Actions** for deployment, scaling & load balancing
-</br>
+
+
+## Website Images
 
 ![Homepage.jpg](./Images/Homepage.png)
 </br></br></br>
