@@ -1,7 +1,10 @@
 # Full-Stack Web Aplication - ECom by Chinmay
 An E-Commerce Full Stack Website made on the MERN tech stack using TypeScript.
 
+
+
 ## Architechture
+
 ![Architecture.jpg](./Images/Architecture.jpg)
 </br></br></br>
 
@@ -15,6 +18,9 @@ An E-Commerce Full Stack Website made on the MERN tech stack using TypeScript.
 
 - Deployed on **AWS EC2** using **AWS Elastic Beanstalk** & **GitHub Actions** for deployment, scaling & load balancing
 
+</br>
+
+
 
 ## Website Images
 
@@ -26,7 +32,10 @@ An E-Commerce Full Stack Website made on the MERN tech stack using TypeScript.
 </br></br></br>
 ![Register.jpg](./Images/Register.png)
 
+
+
 ## Technologies Used:
+
 1. React
 2. Express
 3. MongoDB
@@ -43,7 +52,10 @@ An E-Commerce Full Stack Website made on the MERN tech stack using TypeScript.
 14. bcrypt
 15. nodemon
 
+
+
 ## Building
+
 1. `npm install` in the Client and Server folders
 2. Install MongoDB Community Server
 3. `npm run dev` in the Client and Server folders
