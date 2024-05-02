@@ -55,9 +55,8 @@ An E-Commerce Full Stack Website made on the MERN tech stack using TypeScript.
 
 
 ## Building
-
-1. `npm install` in the Client and Server folders
-2. Install MongoDB Community Server
-3. `npm run dev` in the Client and Server folders
+```
+docker-compose up -d
+```
 
 The website will be hosted on localhost
