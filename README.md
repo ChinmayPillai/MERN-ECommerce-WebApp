@@ -59,4 +59,4 @@ An E-Commerce Full Stack Website made on the MERN tech stack using TypeScript.
 docker-compose up -d
 ```
 
-The website will be hosted on localhost
+The website will be hosted on http://localhost:80
