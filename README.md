@@ -40,14 +40,14 @@ An E-Commerce Full Stack Website made on the MERN tech stack using TypeScript.
 
 
 
-## Technologies Used:
+## Tech Stack:
 
 1. React
 2. Express
 3. MongoDB
-4. Redis
-5. NginX
-6. Docker & Docker-Compose
+4. NginX
+5. Docker & Docker-Compose
+6. Redis
 7. AWS EC2
 8. AWS Elastic Beanstalk
 9. Github Actions
@@ -60,9 +60,15 @@ An E-Commerce Full Stack Website made on the MERN tech stack using TypeScript.
 
 
 
-## Building
+## Build
+
 ```
-docker-compose up -d
+docker-compose up -d --build
 ```
+
+To bring down the application:
+```
+docker-compose down
+``` 
 
 The website will be hosted on http://localhost:80
