@@ -6,7 +6,7 @@ An E-Commerce Full Stack Website made on the MERN tech stack using TypeScript.
 - [Architecture](#architechture)
 - [Website Images](#website-images)
 - [Technologies Used](#technologies-used)
-- [Building](#building)
+- [Build](#build)
 
 
 ## Architechture
@@ -72,3 +72,6 @@ docker-compose down
 ``` 
 
 The website will be hosted on http://localhost:80
+
+
+
