@@ -61,9 +61,16 @@ An E-Commerce Full Stack Website made on the MERN tech stack using TypeScript.
 
 
 ## Build
+To build and run the application in *production mode*:
 
 ```
 docker-compose up -d --build
+```
+
+
+To run the application in *developer mode*:
+```
+docker-compose -f docker-compose-dev.yml up -d --build
 ```
 
 To bring down the application:
