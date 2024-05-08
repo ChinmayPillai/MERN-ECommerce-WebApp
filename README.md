@@ -1,6 +1,12 @@
 # Full-Stack Web Aplication - ECom by Chinmay
 An E-Commerce Full Stack Website made on the MERN tech stack using TypeScript.
 
+
+## Application URL (Hosted on AWS)
+The application has been hosted on **AWS** and can be accessed at:
+http://ecom.ap-south-1.elasticbeanstalk.com/
+
+
 ## Navigation
 
 - [Architecture](#architechture)
