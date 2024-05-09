@@ -24,7 +24,7 @@ app.get('/users', async(req, res) => {
         const decoded = jwt.verify(token, privateKey)
         const id = decoded._id;
 
-        const user = await redis.call('JSON.GET', 'user:'+id)
+        let user = await redis.call('JSON.GET', 'user:'+id)
 
         if(!user){
             user = await User.findById(id)
