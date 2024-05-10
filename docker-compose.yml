@@ -19,8 +19,8 @@ services:
       - mern-ecommerce-website:/data/db
   nginx:
     build: 
-      dockerfile: Dockerfile.prod
       context: ./Client
+      dockerfile: Dockerfile.prod
     ports:
       - 80:80
     depends_on:
