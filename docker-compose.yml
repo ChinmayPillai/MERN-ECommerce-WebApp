@@ -1,17 +1,6 @@
 version: "3.8"
 
 services:
-  web:
-    build: 
-      dockerfile: Dockerfile.dev
-      context: ./Client
-    ports:
-      - 5173
-    depends_on:
-      - api
-    networks:
-      - mern-ecommerce-website
-    tty: true
   api:
     build: ./Server
     ports:
@@ -29,11 +18,13 @@ services:
     volumes:
       - mern-ecommerce-website:/data/db
   nginx:
-    build: ./NginX
+    build: 
+      context: ./Client
+      dockerfile: Dockerfile
     ports:
       - 80:80
     depends_on:
-      - web
+      - api
     networks:
       - mern-ecommerce-website
   redis:
