@@ -40,3 +40,4 @@ jobs:
           version_label: "mern-ecommerce-webapp-${{ steps.format-time.outputs.replaced }}"
           region: ap-south-1
           deployment_package: deploy.zip
+          deployment-timeout: 1200
