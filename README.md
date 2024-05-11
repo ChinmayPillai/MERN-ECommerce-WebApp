@@ -30,6 +30,8 @@ https://ecom.chinmaypillai.com
 
 - Deployed on **AWS EC2** using **AWS Elastic Beanstalk** & **GitHub Actions** for deployment, scaling & load balancing
 
+- Established **TLS** security and routing to custom domain using **AWS Route 53** and **AWS Certificate Management**
+
 </br>
 
 
