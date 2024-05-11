@@ -5,13 +5,16 @@ const redis = require('../redis-client');
 
 orderRouter.get('/:id', async (req, res) => {
     try{
-        //const user = await redis.call('JSON.GET', 'user:'+req.params.id)
+        let user = await redis.call('JSON.GET', 'user:'+req.params.id)
 
-        // if(!user){
-            const user = await User.findById(req.params.id)
-            // redis.call('JSON.SET', 'user:'+req.params.id, '.', JSON.stringify(user))
-            // redis.expire("user:"+req.params.id, 3600)
-        //}
+        if(!user){
+            user = await User.findById(req.params.id)
+            redis.call('JSON.SET', 'user:'+req.params.id, '.', JSON.stringify(user))
+            redis.expire("user:"+req.params.id, 3600)
+        }
+        else{
+            user = JSON.parse(user);
+        }
         res.send(user.orders);
     }
     catch(err){
@@ -27,6 +30,7 @@ orderRouter.post('/:id', async (req, res) => {
         
         await user.orders.unshift(req.body.item);
         await user.save();
+        await redis.call('JSON.SET', 'user:'+req.params.id, '.orders', JSON.stringify(user.orders));
         res.send('Added to Orders');
         return;
     }
@@ -46,6 +50,7 @@ orderRouter.put('/:id', async (req, res) => {
         });
         
         await user.save();
+        await redis.call('JSON.SET', 'user:'+req.params.id, '.orders', JSON.stringify(user.orders));
         res.send('Updated Orders');
         return;
     }
