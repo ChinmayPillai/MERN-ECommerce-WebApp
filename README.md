@@ -4,7 +4,7 @@ An E-Commerce Full Stack Website made on the MERN tech stack using TypeScript.
 
 ## Application URL (Hosted on AWS)
 The application has been hosted on **AWS** and can be accessed at:
-http://ecom.ap-south-1.elasticbeanstalk.com/
+https://ecom.chinmaypillai.com
 
 
 ## Navigation
@@ -56,13 +56,15 @@ http://ecom.ap-south-1.elasticbeanstalk.com/
 6. Redis
 7. AWS EC2
 8. AWS Elastic Beanstalk
-9. Github Actions
-10. NodeJs
-11. Mongoose
-12. axios
-13. jasonwebtoken & jose
-14. bcrypt
-15. nodemon
+9. AWS Route 53
+10. AWS Certificate Management
+11. Github Actions
+12. NodeJs
+13. Mongoose
+14. axios
+15. jasonwebtoken & jose
+16. bcrypt
+17. nodemon
 
 
 
