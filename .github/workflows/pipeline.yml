@@ -34,8 +34,8 @@ jobs:
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          application_name: mern-ecommerce-webapp
-          environment_name: Mern-ecommerce-webapp-env
+          application_name: mern-ecom
+          environment_name: Mern-ecom-env
           existing_bucket_name: elasticbeanstalk-ap-south-1-788157071253
           version_label: "mern-ecommerce-webapp-${{ steps.format-time.outputs.replaced }}"
           region: ap-south-1
