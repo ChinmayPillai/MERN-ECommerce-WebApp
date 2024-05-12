@@ -88,7 +88,7 @@ To bring down the application:
 docker-compose down
 ``` 
 
-The website will be hosted on http://localhost:80
+The website will be hosted on http://localhost:80 
 
 
 
