@@ -4,7 +4,7 @@ An E-Commerce Full Stack Website made on the MERN tech stack using TypeScript.
 
 ## Application URL (Hosted on AWS)
 The application has been hosted on **AWS** and can be accessed at:
-https://ecom.chinmaypillai.com
+https://ecom.chinmaypillai.com  *(currently down to save costs)* and http://ecom.ap-south-1.elasticbeanstalk.com
 
 
 ## Navigation
@@ -17,7 +17,7 @@ https://ecom.chinmaypillai.com
 
 ## Architechture
 
-![Architecture.jpg](./Images/Architecture.jpg)
+![Architecture.jpg](./Images/Architecture_Prod.jpg)
 </br></br></br>
 
 - User specific data of every user is stored as an encrypted document on a **MongoDB(NoSQL)** database and is update on interaction with the application.
